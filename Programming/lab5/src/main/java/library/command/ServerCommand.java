@@ -1,8 +1,9 @@
 package library.command;
 
-public abstract class ServerCommand implements Command {
-}
+public abstract class ServerCommand extends Command {
+    protected ServerDataManager dataManager;
 
-class ExecutionResult {
-
+    public void setDataManager(ServerDataManager dataManager) {
+        this.dataManager = dataManager;
+    }
 }
