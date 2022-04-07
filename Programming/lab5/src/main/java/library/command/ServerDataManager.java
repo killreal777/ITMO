@@ -1,6 +1,6 @@
 package library.command;
 
-import library.organization.Organization;
+import library.model.Organization;
 
 import java.util.PriorityQueue;
 

@@ -2,7 +2,7 @@ package server;
 
 import library.command.Command;
 import library.command.ServerDataManager;
-import library.organization.Organization;
+import library.model.Organization;
 
 import java.util.PriorityQueue;
 
@@ -10,11 +10,13 @@ public class DataManager implements ServerDataManager {
     private final PriorityQueue<Organization> collection;
     private final CollectionInfo info;
     private final CommandHistory history;
+    private final IdGenerator idGenerator;
 
     public DataManager() {
         this.collection = new PriorityQueue<Organization>();
         this.info = new CollectionInfo();
         this.history = new CommandHistory();
+        this.idGenerator = new IdGenerator();
     }
 
     @Override

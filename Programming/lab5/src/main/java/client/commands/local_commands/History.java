@@ -6,9 +6,8 @@ import library.command.ServerCommand;
 
 public class History extends ServerCommand {
     @Override
-    public void execute() {
-        String history = this.dataManager.getHistory();
-        this.result.write(history);
+    public Command getClone() {
+        return new History();
     }
 
     @Override
@@ -18,12 +17,16 @@ public class History extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return new History();
+    public void execute() {
+        String history = this.dataManager.getHistory();
+        this.result.write(history);
     }
 
+
     @Override
-    public String toString() {
-        return "history";
+    public String getHelp() {
+        String name = "history";
+        String description = "вывести последние 10 команд (без их аргументов)";
+        return String.format("%s: %s", name, description);
     }
 }

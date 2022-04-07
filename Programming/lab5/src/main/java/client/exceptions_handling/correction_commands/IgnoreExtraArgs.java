@@ -24,6 +24,6 @@ public class IgnoreExtraArgs implements CorrectionCommand {
 
     @Override
     public String getMan() {
-        return "\"i\" - игнорировать лишние аргументы";
+        return "\033[1;93m" + "i" + "\033[0m" + ": " + "игнорировать лишние аргументы";
     }
 }

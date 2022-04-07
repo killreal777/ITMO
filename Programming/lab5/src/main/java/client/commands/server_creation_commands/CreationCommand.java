@@ -2,11 +2,10 @@ package client.commands.server_creation_commands;
 
 import client.commands.server_creation_commands.creators.Creator;
 import client.user_interface.Terminal;
-import library.command.Command;
 import library.command.ServerCommand;
-import library.organization.Address;
-import library.organization.Coordinates;
-import library.organization.OrganizationType;
+import library.model.Address;
+import library.model.Coordinates;
+import library.model.OrganizationType;
 
 abstract class CreationCommand extends ServerCommand {
     protected final Terminal terminal;

@@ -1,4 +1,4 @@
-package library.organization;
+package library.model;
 
 public enum OrganizationType {
     COMMERCIAL("Коммерческая организация", 0),

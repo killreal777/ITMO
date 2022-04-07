@@ -19,7 +19,6 @@ public class BreakExecution implements CorrectionCommand {
 
     @Override
     public String getMan() {
-        return "\"b\" - прервать исполнение команды";
+        return "\033[1;93m" + "b" + "\033[0m" + ": " + "прервать исполнение команды";
     }
-
 }

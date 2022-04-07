@@ -1,4 +1,4 @@
-package library.organization;
+package library.model;
 
 public class Coordinates {
     private int x; //Значение поля должно быть больше -535
@@ -11,6 +11,6 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return String.format("%d %d", x, y);
+        return String.format("%d, %d", x, y);
     }
 }

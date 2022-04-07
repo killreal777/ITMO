@@ -26,7 +26,7 @@ public class AddArgs implements CorrectionCommand {
 
     @Override
     public String getMan() {
-        return "\"a\" - доввести недостающие аргументы";
+        return "\033[1;93m" + "a" + "\033[0m" + ": " + "доввести недостающие аргументы";
     }
 
 

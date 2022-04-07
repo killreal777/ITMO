@@ -6,9 +6,8 @@ import library.command.ServerCommand;
 
 public class Info extends ServerCommand {
     @Override
-    public void execute() {
-        String collectionInfo = this.dataManager.getInfo();
-        result.write(collectionInfo);
+    public Command getClone() {
+        return new Info();
     }
 
     @Override
@@ -18,12 +17,16 @@ public class Info extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return new Info();
+    public void execute() {
+        String collectionInfo = this.dataManager.getInfo();
+        result.write(collectionInfo);
     }
 
+
     @Override
-    public String toString() {
-        return "info";
+    public String getHelp() {
+        String name = "info";
+        String description = "вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)";
+        return String.format("%s: %s", name, description);
     }
 }

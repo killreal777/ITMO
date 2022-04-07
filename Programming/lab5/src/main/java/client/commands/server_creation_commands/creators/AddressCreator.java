@@ -38,7 +38,7 @@ public class AddressCreator extends Creator {
 
     @Override
     public Object getResult() {
-        return new library.organization.Address(zipCode, locationArgX, locationArgY, locationArgZ, locationArgName);
+        return new library.model.Address(zipCode, locationArgX, locationArgY, locationArgZ, locationArgName);
     }
 
 

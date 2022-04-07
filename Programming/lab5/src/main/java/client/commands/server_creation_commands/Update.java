@@ -9,9 +9,10 @@ public class Update extends CreationCommand {
         super(terminal, new OrganizationCreator(terminal));
     }
 
-    @Override
-    public void execute() {
 
+    @Override
+    public Command getClone() {
+        return null;
     }
 
     @Override
@@ -20,7 +21,15 @@ public class Update extends CreationCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "update id {element}";
+        String description = "обновить значение элемента коллекции, id которого равен заданному";
+        return String.format("%s: %s", name, description);
     }
 }

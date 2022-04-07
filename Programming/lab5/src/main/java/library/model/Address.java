@@ -1,4 +1,4 @@
-package library.organization;
+package library.model;
 
 public class Address {
     private final String zipCode; //Длина строки не должна быть больше 16, Поле не может быть null
@@ -11,6 +11,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return zipCode + "\n" + town.toString();
+        return zipCode + " " + town.toString();
     }
 }

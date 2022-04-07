@@ -4,7 +4,7 @@ import client.commands.server_creation_commands.creators.OrganizationCreator;
 import client.exceptions_handling.exceptions.ArgumentsAmountException;
 import client.user_interface.Terminal;
 import library.command.Command;
-import library.organization.Organization;
+import library.model.Organization;
 
 import java.util.PriorityQueue;
 
@@ -18,11 +18,10 @@ public class Add extends CreationCommand {
         this.terminal = terminal;
     }
 
+
     @Override
-    public void execute() {
-        PriorityQueue<Organization> dataCollection = this.dataManager.getCollection();
-        dataCollection.add(organization);
-        this.result.write("Элемент успешно добавлен");
+    public Command getClone() {
+        return new Add(terminal);
     }
 
     @Override
@@ -39,7 +38,17 @@ public class Add extends CreationCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return new Add(terminal);
+    public void execute() {
+        PriorityQueue<Organization> dataCollection = this.dataManager.getCollection();
+        dataCollection.add(organization);
+        this.result.write("Элемент успешно добавлен");
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "add {element}";
+        String description = "добавить новый элемент в коллекцию";
+        return String.format("%s: %s", name, description);
     }
 }

@@ -5,8 +5,8 @@ import library.command.ServerCommand;
 
 public class RemoveByAddress extends ServerCommand {
     @Override
-    public void execute() {
-
+    public Command getClone() {
+        return null;
     }
 
     @Override
@@ -15,7 +15,15 @@ public class RemoveByAddress extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "remove_any_by_official_address officialAddress";
+        String description = "удалить из коллекции один элемент, значение поля officialAddress которого эквивалентно заданному";
+        return String.format("%s: %s", name, description);
     }
 }

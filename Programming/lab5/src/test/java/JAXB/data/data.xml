@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<collection>
+    <person>
+        <name>Donald Trump</name>
+        <age>64</age>
+        <address>
+            <country>USA</country>
+            <house_number>34</house_number>
+            <street_name>Liberty Avenue</street_name>
+        </address>
+    </person>
+    <person>
+        <name>Vladimir Putin</name>
+        <age>73</age>
+        <address>
+            <country>RUSSIA</country>
+            <house_number>21</house_number>
+            <street_name>Nevsky Prospect</street_name>
+        </address>
+    </person>
+    <person>
+        <name>Kirill Kravtsov</name>
+        <age>18</age>
+        <address>
+            <country>RUSSIA</country>
+            <house_number>45</house_number>
+            <street_name>Prospect Nastavnikov</street_name>
+        </address>
+    </person>
+    <person>
+        <name>Kirill Kravtsov</name>
+        <age>18</age>
+        <address>
+            <country>RUSSIA</country>
+            <house_number>45</house_number>
+            <street_name>Prospect Nastavnikov</street_name>
+        </address>
+    </person>
+</collection>

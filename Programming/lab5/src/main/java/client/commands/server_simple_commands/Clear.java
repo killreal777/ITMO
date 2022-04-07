@@ -5,8 +5,8 @@ import library.command.ServerCommand;
 
 public class Clear extends ServerCommand {
     @Override
-    public void execute() {
-
+    public Command getClone() {
+        return new Clear();
     }
 
     @Override
@@ -15,7 +15,16 @@ public class Clear extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+        dataManager.getCollection().clear();
+        result.write("Коллекция очищена");
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "clear";
+        String description = "очистить коллекцию";
+        return String.format("%s: %s", name, description);
     }
 }

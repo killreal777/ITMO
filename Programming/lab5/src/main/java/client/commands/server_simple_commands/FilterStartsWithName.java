@@ -5,8 +5,8 @@ import library.command.ServerCommand;
 
 public class FilterStartsWithName extends ServerCommand {
     @Override
-    public void execute() {
-
+    public Command getClone() {
+        return null;
     }
 
     @Override
@@ -15,7 +15,15 @@ public class FilterStartsWithName extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "filter_starts_with_name name";
+        String description = "вывести элементы, значение поля name которых начинается с заданной подстроки";
+        return String.format("%s: %s", name, description);
     }
 }

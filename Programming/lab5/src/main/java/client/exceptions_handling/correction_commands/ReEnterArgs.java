@@ -27,6 +27,6 @@ public class ReEnterArgs implements CorrectionCommand {
 
     @Override
     public String getMan() {
-        return "\"r\" - ввести аргументы заново";
+        return "\033[1;93m" + "r" + "\033[0m" + ": " + "ввести все аргументы заново";
     }
 }

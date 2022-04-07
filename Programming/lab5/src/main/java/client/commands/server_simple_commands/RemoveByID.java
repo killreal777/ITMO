@@ -5,8 +5,8 @@ import library.command.ServerCommand;
 
 public class RemoveByID extends ServerCommand {
     @Override
-    public void execute() {
-
+    public Command getClone() {
+        return null;
     }
 
     @Override
@@ -15,7 +15,15 @@ public class RemoveByID extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "remove_by_id id";
+        String description = " удалить элемент из коллекции по его id";
+        return String.format("%s: %s", name, description);
     }
 }

@@ -11,7 +11,8 @@ public abstract class Command {
         return result;
     }
 
-    abstract public Command getUsableClone();
+    abstract public Command getClone();
     abstract public void setArgs(String[] args);
     abstract public void execute();
+    abstract public String getHelp();
 }

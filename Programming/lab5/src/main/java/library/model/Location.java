@@ -1,4 +1,4 @@
-package library.organization;
+package library.model;
 
 public class Location {
     private Long x; //Поле не может быть null
@@ -15,6 +15,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return Long.toString(x) + "\n" + Integer.toString(y) + "\n" + Float.toString(z) + "\n" + name;
+        return String.format("%s (%d, %d, %f)", name, x, y, z);
+        //return Long.toString(x) + "\n" + Integer.toString(y) + "\n" + Float.toString(z) + "\n" + name;
     }
 }

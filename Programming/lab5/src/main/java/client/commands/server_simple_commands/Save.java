@@ -5,8 +5,8 @@ import library.command.ServerCommand;
 
 public class Save extends ServerCommand {
     @Override
-    public void execute() {
-
+    public Command getClone() {
+        return null;
     }
 
     @Override
@@ -15,7 +15,15 @@ public class Save extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "save";
+        String description = "сохранить коллекцию в файл";
+        return String.format("%s: %s", name, description);
     }
 }

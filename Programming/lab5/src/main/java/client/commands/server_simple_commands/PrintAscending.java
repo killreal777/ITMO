@@ -5,8 +5,8 @@ import library.command.ServerCommand;
 
 public class PrintAscending extends ServerCommand {
     @Override
-    public void execute() {
-
+    public Command getClone() {
+        return null;
     }
 
     @Override
@@ -15,7 +15,15 @@ public class PrintAscending extends ServerCommand {
     }
 
     @Override
-    public Command getUsableClone() {
-        return null;
+    public void execute() {
+
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "print_ascending";
+        String description = "вывести элементы коллекции в порядке возрастания";
+        return String.format("%s: %s", name, description);
     }
 }

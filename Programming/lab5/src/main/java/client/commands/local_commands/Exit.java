@@ -3,10 +3,10 @@ package client.commands.local_commands;
 import client.exceptions_handling.exceptions.ArgumentsAmountException;
 import library.command.Command;
 
-public class Exit extends Command {
+public class Exit extends Command{
     @Override
-    public void execute() {
-        System.exit(0);
+    public Command getClone() {
+        return new Exit();
     }
 
     @Override
@@ -16,7 +16,15 @@ public class Exit extends Command {
     }
 
     @Override
-    public Command getUsableClone() {
-        return new Exit();
+    public void execute() {
+        System.exit(0);
+    }
+
+
+    @Override
+    public String getHelp() {
+        String name = "exit";
+        String description = "завершить программу (без сохранения в файл)";
+        return String.format("%s: %s", name, description);
     }
 }

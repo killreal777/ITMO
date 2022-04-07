@@ -10,6 +10,7 @@ import client.exceptions_handling.exceptions.CorrectableException;
 import client.exceptions_handling.exceptions.NoSuchCommandException;
 import client.user_interface.*;
 import client.transport.*;
+import com.sun.media.jfxmediaimpl.HostUtils;
 import library.command.Command;
 import library.command.ExecutionResult;
 import library.command.ServerCommand;

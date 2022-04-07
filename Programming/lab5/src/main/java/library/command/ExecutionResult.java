@@ -8,9 +8,8 @@ public class ExecutionResult {
     }
 
     public void write(String result) {
-        if (result != "")
-            this.result += '\n';
         this.result += result;
+        this.result += '\n';
     }
 
     @Override
