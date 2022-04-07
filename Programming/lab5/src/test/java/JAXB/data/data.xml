@@ -2,7 +2,7 @@
 <collection>
     <person>
         <name>Donald Trump</name>
-        <age>64</age>
+        <age>75</age>
         <address>
             <country>USA</country>
             <house_number>34</house_number>
@@ -11,29 +11,29 @@
     </person>
     <person>
         <name>Vladimir Putin</name>
-        <age>73</age>
+        <age>69</age>
         <address>
             <country>RUSSIA</country>
             <house_number>21</house_number>
-            <street_name>Nevsky Prospect</street_name>
+            <street_name>Prospect Lenina</street_name>
         </address>
     </person>
     <person>
-        <name>Kirill Kravtsov</name>
-        <age>18</age>
+        <name>Maxim Tuchkov</name>
+        <age>20</age>
         <address>
-            <country>RUSSIA</country>
+            <country>FRANCE</country>
             <house_number>45</house_number>
-            <street_name>Prospect Nastavnikov</street_name>
+            <street_name>Ulitsa Zhukova</street_name>
         </address>
     </person>
     <person>
-        <name>Kirill Kravtsov</name>
+        <name>Anthony Pushkin</name>
         <age>18</age>
         <address>
             <country>RUSSIA</country>
-            <house_number>45</house_number>
-            <street_name>Prospect Nastavnikov</street_name>
+            <house_number>44</house_number>
+            <street_name>Bogatyrsky Prospect</street_name>
         </address>
     </person>
 </collection>

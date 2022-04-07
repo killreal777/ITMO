@@ -11,7 +11,7 @@ public class TestMain {
         try {
             PersonJaxbConverter converter = new PersonJaxbConverter();
             PersonList persons = new PersonList(converter.parseXml("src/test/java/JAXB/data/data.xml"));
-            persons.add(new Person("Kirill Kravtsov", 18, Country.RUSSIA, "Prospect Nastavnikov", 45));
+            persons.add(new Person("Anthony Pushkin", 18, Country.RUSSIA, "Bogatyrsky Prospect", 44));
             converter.writeXml(persons);
         } catch (Exception e) {
             e.printStackTrace();
