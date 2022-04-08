@@ -4,6 +4,7 @@ import client.exceptions_handling.exceptions.ArgumentValueException;
 import client.exceptions_handling.exceptions.ArgumentsAmountException;
 import client.user_interface.ReadingMode;
 import client.user_interface.Terminal;
+import library.data.subject.Address;
 
 import java.util.Arrays;
 
@@ -38,7 +39,7 @@ public class AddressCreator extends Creator {
 
     @Override
     public Object getResult() {
-        return new library.model.Address(zipCode, locationArgX, locationArgY, locationArgZ, locationArgName);
+        return new Address(zipCode, locationArgX, locationArgY, locationArgZ, locationArgName);
     }
 
 

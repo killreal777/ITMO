@@ -4,7 +4,7 @@ import client.commands.server_creation_commands.creators.OrganizationCreator;
 import client.exceptions_handling.exceptions.ArgumentsAmountException;
 import client.user_interface.Terminal;
 import library.command.Command;
-import library.model.Organization;
+import library.data.subject.Organization;
 
 import java.util.PriorityQueue;
 

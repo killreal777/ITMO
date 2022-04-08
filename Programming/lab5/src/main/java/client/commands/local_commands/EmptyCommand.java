@@ -1,4 +1,4 @@
-package client.commands.management;
+package client.commands.local_commands;
 
 import library.command.Command;
 

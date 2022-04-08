@@ -24,6 +24,7 @@ public class FullAddress {
         return country;
     }
 
+    @XmlElement(name = "street_name")
     public String getStreetName() {
         return streetName;
     }
@@ -32,12 +33,12 @@ public class FullAddress {
         return houseNumber;
     }
 
-    @XmlElement(name = "country")
+
     public void setCountry(Country country) {
         this.country = country;
     }
 
-    @XmlElement(name = "street_name")
+
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }

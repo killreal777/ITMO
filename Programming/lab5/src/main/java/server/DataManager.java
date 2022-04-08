@@ -2,7 +2,9 @@ package server;
 
 import library.command.Command;
 import library.command.ServerDataManager;
-import library.model.Organization;
+import library.data.CollectionInfo;
+import library.data.IdGenerator;
+import library.data.subject.Organization;
 
 import java.util.PriorityQueue;
 
@@ -10,13 +12,11 @@ public class DataManager implements ServerDataManager {
     private final PriorityQueue<Organization> collection;
     private final CollectionInfo info;
     private final CommandHistory history;
-    private final IdGenerator idGenerator;
 
-    public DataManager() {
-        this.collection = new PriorityQueue<Organization>();
-        this.info = new CollectionInfo();
+    public DataManager(PriorityQueue<Organization> collection, CollectionInfo info, IdGenerator idInfo) {
+        this.collection = collection;
+        this.info = info;
         this.history = new CommandHistory();
-        this.idGenerator = new IdGenerator();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class DataManager implements ServerDataManager {
 
     @Override
     public String getInfo() {
-        return "Info works yeah";
+        return "Info works";
         //return info.toString();    // TODO
     }
 

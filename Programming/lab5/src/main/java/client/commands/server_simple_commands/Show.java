@@ -2,7 +2,7 @@ package client.commands.server_simple_commands;
 
 import library.command.Command;
 import library.command.ServerCommand;
-import library.model.Organization;
+import library.data.subject.Organization;
 
 public class Show extends ServerCommand {
     @Override

@@ -4,9 +4,9 @@ import client.exceptions_handling.exceptions.ArgumentValueException;
 import client.exceptions_handling.exceptions.ArgumentsAmountException;
 import client.user_interface.ReadingMode;
 import client.user_interface.Terminal;
-import library.model.Address;
-import library.model.Organization;
-import library.model.OrganizationType;
+import library.data.subject.Address;
+import library.data.subject.Organization;
+import library.data.subject.OrganizationType;
 
 public class OrganizationCreator extends Creator {
     private final AddressCreator addressCreator;

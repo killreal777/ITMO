@@ -1,9 +1,15 @@
-package library.model;
+package library.data.subject;
 
+
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.time.LocalDateTime;
 
-@XmlRootElement
+
+@XmlRootElement(name = "organization")
+@XmlType(propOrder = {"id", "name", "coordinates", "creation_date", "annual_turnover",
+        "full_name", "employees_count", "type", "official_address"})
 public class Organization implements Comparable<Organization>{
     private Integer id; //not null, > 0, unique, autogenerate
     private String name; //not null, not empty String
@@ -27,35 +33,50 @@ public class Organization implements Comparable<Organization>{
         this.officialAddress = address;
     }
 
-    public Organization() {
-
-    }
+    public Organization() {}
 
 
+    @XmlElement(name = "id")
     public Integer getId() {
         return id;
     }
+
+    @XmlElement(name = "name")
     public String getName() {
         return name;
     }
+
+    @XmlElement(name = "coordinates")
     public Coordinates getCoordinates() {
         return coordinates;
     }
+
+    @XmlElement(name = "creation_date")
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
+
+    @XmlElement(name = "annual_turnover")
     public Long getAnnualTurnover() {
         return annualTurnover;
     }
+
+    @XmlElement(name = "full_name")
     public String getFullName() {
         return fullName;
     }
+
+    @XmlElement(name = "employees_count")
     public int getEmployeesCount() {
         return employeesCount;
     }
+
+    @XmlElement(name = "type")
     public OrganizationType getType() {
         return type;
     }
+
+    @XmlElement(name = "official_address")
     public Address getOfficialAddress() {
         return officialAddress;
     }
@@ -112,10 +133,6 @@ public class Organization implements Comparable<Organization>{
 
     @Override
     public int compareTo(Organization o) {
-        if (annualTurnover > o.getAnnualTurnover())
-            return 1;
-        if (annualTurnover < o.getAnnualTurnover())
-            return -1;
-        return 0;
+        return annualTurnover.compareTo(o.getAnnualTurnover());
     }
 }

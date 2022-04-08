@@ -1,17 +1,15 @@
-package library.model;
+package library.data.subject;
 
 public enum OrganizationType {
-    COMMERCIAL("Коммерческая организация", 0),
-    TRUST("Траст", 1),
-    PRIVATE_LIMITED_COMPANY("Общество с ограниченной ответственностью", 2),
-    OPEN_JOINT_STOCK_COMPANY("Открытое акционерное общество", 3);
+    COMMERCIAL("Коммерческая организация"),
+    TRUST("Траст"),
+    PRIVATE_LIMITED_COMPANY("Общество с ограниченной ответственностью"),
+    OPEN_JOINT_STOCK_COMPANY("Открытое акционерное общество");
 
     private final String name;
-    private final int id;
 
-    OrganizationType(String name, int id) {
+    OrganizationType(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public static OrganizationType getByID(int id) throws InvalidIDException {
@@ -33,7 +31,7 @@ public enum OrganizationType {
         return name;
     }
 
-
+    //TODO
     public static class InvalidIDException extends RuntimeException {
     }
 }

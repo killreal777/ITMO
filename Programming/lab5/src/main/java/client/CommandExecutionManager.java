@@ -2,7 +2,7 @@ package client;
 
 import client.commands.management.CommandManager;
 import client.commands.management.CommandProvider;
-import client.commands.management.EmptyCommand;
+import client.commands.local_commands.EmptyCommand;
 import client.exceptions_handling.correction_logic.ArgumentCorrector;
 import client.exceptions_handling.correction_logic.CorrectionResult;
 import client.exceptions_handling.correction_logic.Corrector;
@@ -10,7 +10,6 @@ import client.exceptions_handling.exceptions.CorrectableException;
 import client.exceptions_handling.exceptions.NoSuchCommandException;
 import client.user_interface.*;
 import client.transport.*;
-import com.sun.media.jfxmediaimpl.HostUtils;
 import library.command.Command;
 import library.command.ExecutionResult;
 import library.command.ServerCommand;

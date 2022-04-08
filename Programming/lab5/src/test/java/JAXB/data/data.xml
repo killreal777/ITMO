@@ -6,7 +6,6 @@
         <address>
             <country>USA</country>
             <house_number>34</house_number>
-            <street_name>Liberty Avenue</street_name>
         </address>
     </person>
     <person>
@@ -15,7 +14,6 @@
         <address>
             <country>RUSSIA</country>
             <house_number>21</house_number>
-            <street_name>Prospect Lenina</street_name>
         </address>
     </person>
     <person>
@@ -24,7 +22,15 @@
         <address>
             <country>FRANCE</country>
             <house_number>45</house_number>
-            <street_name>Ulitsa Zhukova</street_name>
+        </address>
+    </person>
+    <person>
+        <name>Anthony Pushkin</name>
+        <age>18</age>
+        <address>
+            <country>RUSSIA</country>
+            <house_number>44</house_number>
+            <street_name>Bogatyrsky Prospect</street_name>
         </address>
     </person>
     <person>
