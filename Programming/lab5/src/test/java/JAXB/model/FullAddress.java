@@ -4,8 +4,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
-@XmlType(name = "full_address")
+@XmlRootElement(name = "full_address")
+@XmlType(propOrder = {"houseNumber", "streetName", "country"})
 public class FullAddress {
     private Country country;
     private String streetName;
@@ -19,7 +19,7 @@ public class FullAddress {
 
     public FullAddress() {  }
 
-
+    @XmlElement(name = "country")
     public Country getCountry() {
         return country;
     }
@@ -29,6 +29,7 @@ public class FullAddress {
         return streetName;
     }
 
+    @XmlElement(name = "house_number")
     public int getHouseNumber() {
         return houseNumber;
     }
@@ -38,12 +39,10 @@ public class FullAddress {
         this.country = country;
     }
 
-
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
 
-    @XmlElement(name = "house_number")
     public void setHouseNumber(int houseNumber) {
         this.houseNumber = houseNumber;
     }

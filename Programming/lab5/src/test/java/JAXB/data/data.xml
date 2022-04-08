@@ -4,42 +4,51 @@
         <name>Donald Trump</name>
         <age>75</age>
         <address>
-            <country>USA</country>
             <house_number>34</house_number>
+            <country>USA</country>
         </address>
     </person>
     <person>
         <name>Vladimir Putin</name>
         <age>69</age>
         <address>
-            <country>RUSSIA</country>
             <house_number>21</house_number>
+            <country>RUSSIA</country>
         </address>
     </person>
     <person>
         <name>Maxim Tuchkov</name>
         <age>20</age>
         <address>
-            <country>FRANCE</country>
             <house_number>45</house_number>
+            <country>FRANCE</country>
         </address>
     </person>
     <person>
         <name>Anthony Pushkin</name>
         <age>18</age>
         <address>
-            <country>RUSSIA</country>
             <house_number>44</house_number>
             <street_name>Bogatyrsky Prospect</street_name>
+            <country>RUSSIA</country>
         </address>
     </person>
     <person>
         <name>Anthony Pushkin</name>
         <age>18</age>
         <address>
-            <country>RUSSIA</country>
             <house_number>44</house_number>
             <street_name>Bogatyrsky Prospect</street_name>
+            <country>RUSSIA</country>
+        </address>
+    </person>
+    <person>
+        <name>Anthony Pushkin</name>
+        <age>18</age>
+        <address>
+            <house_number>44</house_number>
+            <street_name>Bogatyrsky Prospect</street_name>
+            <country>RUSSIA</country>
         </address>
     </person>
 </collection>
