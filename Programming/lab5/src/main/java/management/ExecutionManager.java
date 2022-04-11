@@ -1,4 +1,4 @@
-package main;
+package management;
 
 import commands.local_commands.EmptyCommand;
 import exceptions_handling.correction_logic.ArgumentCorrector;
@@ -12,25 +12,38 @@ import user_interface.ReadingMode;
 import user_interface.Terminal;
 import user_interface.UserTerminal;
 
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class ExecutionManager {
     private final Terminal terminal;
     private final CommandManager commandManager;
-    private final ArgumentCorrector corrector;
     private final DataManager dataManager;
     private final CommandHistory history;
+    private final ArgumentCorrector corrector;
 
 
     public ExecutionManager() {
         this.terminal = new UserTerminal();
         this.commandManager = new CommandManager(terminal);
-        this.corrector = new Corrector(terminal);
         this.dataManager = new DataManager();
-        dataManager.loadData("src/main/java/data/data.xml");
         this.history = new CommandHistory();
-
+        this.corrector = new Corrector(terminal);
+        loadData();
         terminal.print("Программа запущена \nДля вывода справки по доступным командам введите \"help\"");
+    }
+
+    private void loadData() {
+        try {
+            dataManager.loadData("src/main/java/data/data.xml");
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found \nCreated new file");
+            dataManager.createData();
+        } catch (JAXBException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

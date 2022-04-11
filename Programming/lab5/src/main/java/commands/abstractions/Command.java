@@ -1,13 +1,13 @@
 package commands.abstractions;
 
 public abstract class Command {
-    protected final ExecutionResult result;
+    protected String result;
 
     public Command() {
-        this.result = new ExecutionResult();
+        this.result = "";
     }
 
-    public ExecutionResult getResult() {
+    public String getResult() {
         return result;
     }
 

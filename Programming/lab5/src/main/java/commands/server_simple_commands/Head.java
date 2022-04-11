@@ -2,7 +2,7 @@ package commands.server_simple_commands;
 
 import commands.abstractions.Command;
 import commands.abstractions.ServerCommand;
-import data.subject.Organization;
+import data_xml.subject_area_structure.Organization;
 
 import java.util.PriorityQueue;
 
@@ -21,9 +21,9 @@ public class Head extends ServerCommand {
     public void execute() {
         PriorityQueue<Organization> collection = dataManager.getCollection();
         if (collection.isEmpty())
-            this.result.write("Collection is empty");
+            this.result += "Collection is empty";
         else
-            this.result.write(collection.peek().toString());
+            this.result += collection.peek().toString();
     }
 
 

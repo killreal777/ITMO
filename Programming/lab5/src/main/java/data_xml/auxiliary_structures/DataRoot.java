@@ -1,27 +1,24 @@
-package data;
-
-import data.subject.Organization;
+package data_xml.auxiliary_structures;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.PriorityQueue;
 
 
-@XmlRootElement(name = "data")
-@XmlType(propOrder = {"collectionInfo", "collection", "idGenerator"})
-public class Data {
+@XmlRootElement(name = "data_xml")
+@XmlType(propOrder = {"collectionInfo", "collectionRoot", "idGenerator"})
+public class DataRoot {
     private CollectionInfo collectionInfo;
-    private OrganizationCollection collection;
+    private CollectionRoot collectionRoot;
     private IdGenerator idGenerator;
 
 
-    public Data() {}
+    public DataRoot() {}
 
 
     @XmlElement(name = "collection")
-    public OrganizationCollection getCollection() {
-        return collection;
+    public CollectionRoot getCollectionRoot() {
+        return collectionRoot;
     }
 
     @XmlElement(name = "collection_info")
@@ -35,8 +32,8 @@ public class Data {
     }
 
 
-    public void setCollection(OrganizationCollection collection) {
-        this.collection = collection;
+    public void setCollectionRoot(CollectionRoot collectionRoot) {
+        this.collectionRoot = collectionRoot;
     }
 
     public void setCollectionInfo(CollectionInfo collectionInfo) {

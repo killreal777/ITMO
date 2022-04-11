@@ -17,7 +17,7 @@ public class Clear extends ServerCommand {
     @Override
     public void execute() {
         dataManager.getCollection().clear();
-        result.write("Коллекция очищена");
+        result += "Коллекция очищена";
     }
 
 

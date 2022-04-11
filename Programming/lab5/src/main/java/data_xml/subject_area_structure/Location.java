@@ -1,4 +1,4 @@
-package data.subject;
+package data_xml.subject_area_structure;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

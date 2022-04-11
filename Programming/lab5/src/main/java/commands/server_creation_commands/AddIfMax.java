@@ -1,5 +1,7 @@
 package commands.server_creation_commands;
 
+import commands.abstractions.Command;
+import data_xml.subject_area_structure.Organization;
 import user_interface.Terminal;
 
 public class AddIfMax extends Add {
@@ -7,6 +9,22 @@ public class AddIfMax extends Add {
         super(terminal);
     }
 
+    @Override
+    public Command getClone() {
+        return new AddIfMax(this.terminal);
+    }
+
+    @Override
+    public void execute() {
+        for (Organization org : dataManager.getCollection()) {
+            if (this.organization.compareTo(org) <= 0) {
+                result = "Значение элемента не превышает значение наибольщего элемента в коллекции";
+                return;
+            }
+        }
+        dataManager.getCollection().add(this.organization);
+        result = "Элемент успешно добавлен";
+    }
 
     @Override
     public String getHelp() {

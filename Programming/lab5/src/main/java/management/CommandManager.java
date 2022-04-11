@@ -1,4 +1,4 @@
-package main;
+package management;
 
 import exceptions_handling.exceptions.CorrectableException;
 import exceptions_handling.exceptions.NoSuchCommandException;
@@ -35,7 +35,7 @@ public class CommandManager {
         commands.put("clear", new Clear());
         commands.put("show", new Show());
         commands.put("head", new Head());
-        commands.put("print_ascending", new PrintAscending());
+        commands.put("print_ascending", new Show());    // it's actually the same commands (because PriorityQueue does ascend sorting automatically)
         commands.put("filter_starts_with_name", new FilterStartsWithName());
         commands.put("info", new Info());
         commands.put("save", new Save());

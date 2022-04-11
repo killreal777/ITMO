@@ -19,7 +19,7 @@ public class History extends ServerCommand {
     @Override
     public void execute() {
         String history = this.dataManager.getHistory();
-        this.result.write(history);
+        this.result += history;
     }
 
 

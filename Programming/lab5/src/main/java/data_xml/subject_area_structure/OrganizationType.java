@@ -1,4 +1,4 @@
-package data.subject;
+package data_xml.subject_area_structure;
 
 public enum OrganizationType {
     COMMERCIAL("Коммерческая организация"),

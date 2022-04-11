@@ -31,7 +31,7 @@ public class Help extends Command {
         for (Command command : commands.values()) {
             String help = command.getHelp();
             String coloredHelp = highlightCommandName(help);
-            result.write(coloredHelp);
+            result += (coloredHelp);
         }
     }
 

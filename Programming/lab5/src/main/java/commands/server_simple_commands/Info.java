@@ -19,7 +19,7 @@ public class Info extends ServerCommand {
     @Override
     public void execute() {
         String collectionInfo = this.dataManager.getInfo();
-        result.write(collectionInfo);
+        result += collectionInfo;
     }
 
 

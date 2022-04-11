@@ -4,13 +4,13 @@ import commands.server_creation_commands.creators.OrganizationCreator;
 import exceptions_handling.exceptions.ArgumentsAmountException;
 import user_interface.Terminal;
 import commands.abstractions.Command;
-import data.subject.Organization;
+import data_xml.subject_area_structure.Organization;
 
 import java.util.PriorityQueue;
 
 public class Add extends CreationCommand {
-    private final Terminal terminal;
-    private Organization organization;
+    protected final Terminal terminal;
+    protected Organization organization;
 
 
     public Add(Terminal terminal) {
@@ -41,7 +41,7 @@ public class Add extends CreationCommand {
     public void execute() {
         PriorityQueue<Organization> dataCollection = this.dataManager.getCollection();
         dataCollection.add(organization);
-        this.result.write("Элемент успешно добавлен");
+        this.result += "Элемент успешно добавлен";
     }
 
 

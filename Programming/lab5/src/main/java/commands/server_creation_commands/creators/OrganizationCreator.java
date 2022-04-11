@@ -4,9 +4,9 @@ import exceptions_handling.exceptions.ArgumentValueException;
 import exceptions_handling.exceptions.ArgumentsAmountException;
 import user_interface.ReadingMode;
 import user_interface.Terminal;
-import data.subject.Address;
-import data.subject.Organization;
-import data.subject.OrganizationType;
+import data_xml.subject_area_structure.Address;
+import data_xml.subject_area_structure.Organization;
+import data_xml.subject_area_structure.OrganizationType;
 
 public class OrganizationCreator extends Creator {
     private final AddressCreator addressCreator;

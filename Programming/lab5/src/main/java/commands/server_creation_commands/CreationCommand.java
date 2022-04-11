@@ -3,9 +3,9 @@ package commands.server_creation_commands;
 import commands.server_creation_commands.creators.Creator;
 import user_interface.Terminal;
 import commands.abstractions.ServerCommand;
-import data.subject.Address;
-import data.subject.Coordinates;
-import data.subject.OrganizationType;
+import data_xml.subject_area_structure.Address;
+import data_xml.subject_area_structure.Coordinates;
+import data_xml.subject_area_structure.OrganizationType;
 
 abstract class CreationCommand extends ServerCommand {
     protected final Terminal terminal;

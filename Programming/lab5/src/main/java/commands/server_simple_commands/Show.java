@@ -2,7 +2,7 @@ package commands.server_simple_commands;
 
 import commands.abstractions.Command;
 import commands.abstractions.ServerCommand;
-import data.subject.Organization;
+import data_xml.subject_area_structure.Organization;
 
 public class Show extends ServerCommand {
     @Override
@@ -19,9 +19,9 @@ public class Show extends ServerCommand {
     public void execute() {
         if (dataManager.getCollection().iterator().hasNext()) {
             for (Organization org : dataManager.getCollection())
-                this.result.write(org.toString());
+                this.result += org.toString();
         } else
-            this.result.write("Коллекция пуста");
+            this.result += "Коллекция пуста";
     }
 
 

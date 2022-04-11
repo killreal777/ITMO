@@ -4,7 +4,7 @@ import exceptions_handling.exceptions.ArgumentValueException;
 import exceptions_handling.exceptions.ArgumentsAmountException;
 import user_interface.ReadingMode;
 import user_interface.Terminal;
-import data.subject.Address;
+import data_xml.subject_area_structure.Address;
 
 import java.util.Arrays;
 
