@@ -1,4 +1,4 @@
-package data_xml.subject_area_structure;
+package data.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,5 +42,13 @@ public class Address {
     @Override
     public String toString() {
         return zipCode + " " + town.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Address))
+            return false;
+        Address adr = (Address) obj;
+        return adr.zipCode.equals(zipCode) && adr.town.equals(town);
     }
 }

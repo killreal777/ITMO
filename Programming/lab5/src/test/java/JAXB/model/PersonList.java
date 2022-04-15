@@ -4,10 +4,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
+
 @XmlRootElement(name = "collection")
 public class PersonList {
-    @XmlElement(name = "person")
     private ArrayList<Person> collection = new ArrayList<>();
+
 
     public PersonList() {}
 
@@ -15,6 +16,8 @@ public class PersonList {
         this.collection = collection;
     }
 
+
+    @XmlElement(name = "person")
     public ArrayList<Person> getCollection() {
         return collection;
     }
@@ -22,6 +25,7 @@ public class PersonList {
     public void add(Person person) {
         collection.add(person);
     }
+
 
     @Override
     public String toString() {

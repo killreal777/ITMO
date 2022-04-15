@@ -1,29 +1,16 @@
 package commands.server_simple_commands;
 
-import commands.abstractions.Command;
 import commands.abstractions.ServerCommand;
 
+
 public class Save extends ServerCommand {
-    @Override
-    public Command getClone() {
-        return new Save();
-    }
-
-    @Override
-    public void setArgs(String[] args) {
-
+    public Save() {
+        this.name = "save";
+        this.description = "сохранить коллекцию в файл";
     }
 
     @Override
     public void execute() {
         this.dataManager.saveData();
-    }
-
-
-    @Override
-    public String getHelp() {
-        String name = "save";
-        String description = "сохранить коллекцию в файл";
-        return String.format("%s: %s", name, description);
     }
 }

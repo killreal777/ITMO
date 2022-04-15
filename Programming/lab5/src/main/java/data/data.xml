@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+    <collection_info>
+        <elements_amount>0</elements_amount>
+    </collection_info>
+    <collection>
+        <organization>
+            <id>1</id>
+            <name>Lesha Inc</name>
+            <coordinates>
+                <x>175</x>
+                <y>120</y>
+            </coordinates>
+            <annual_turnover>200</annual_turnover>
+            <full_name>Alexey Incorparated</full_name>
+            <employees_count>2</employees_count>
+            <type>COMMERCIAL</type>
+            <official_address>
+                <zip_code>195030</zip_code>
+                <town>
+                    <x>175</x>
+                    <y>120</y>
+                    <z>50.0</z>
+                    <name>Velikie Luki</name>
+                </town>
+            </official_address>
+        </organization>
+        <organization>
+            <id>2</id>
+            <name>Apple</name>
+            <coordinates>
+                <x>1920</x>
+                <y>1080</y>
+            </coordinates>
+            <annual_turnover>4820</annual_turnover>
+            <full_name>Grandmother's Apple Juice</full_name>
+            <employees_count>12</employees_count>
+            <type>OPEN_JOINT_STOCK_COMPANY</type>
+            <official_address>
+                <zip_code>434950</zip_code>
+                <town>
+                    <x>1900</x>
+                    <y>1000</y>
+                    <z>10.0</z>
+                    <name>Rostov-na-Donu</name>
+                </town>
+            </official_address>
+        </organization>
+    </collection>
+</data>

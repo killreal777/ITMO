@@ -1,16 +1,15 @@
-package data_xml.auxiliary_structures;
+package data.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
-@XmlRootElement(name = "data_xml")
-@XmlType(propOrder = {"collectionInfo", "collectionRoot", "idGenerator"})
+@XmlRootElement(name = "data")
+@XmlType(propOrder = {"collectionInfo", "collectionRoot"})
 public class DataRoot {
-    private CollectionInfo collectionInfo;
-    private CollectionRoot collectionRoot;
-    private IdGenerator idGenerator;
+    private CollectionInfo collectionInfo = new CollectionInfo();
+    private CollectionRoot collectionRoot = new CollectionRoot();
 
 
     public DataRoot() {}
@@ -26,10 +25,6 @@ public class DataRoot {
         return collectionInfo;
     }
 
-    @XmlElement(name = "id_info")
-    public IdGenerator getIdGenerator() {
-        return idGenerator;
-    }
 
 
     public void setCollectionRoot(CollectionRoot collectionRoot) {
@@ -38,9 +33,5 @@ public class DataRoot {
 
     public void setCollectionInfo(CollectionInfo collectionInfo) {
         this.collectionInfo = collectionInfo;
-    }
-
-    public void setIdGenerator(IdGenerator idGenerator) {
-        this.idGenerator = idGenerator;
     }
 }

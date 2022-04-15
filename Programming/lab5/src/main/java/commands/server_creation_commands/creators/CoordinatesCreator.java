@@ -1,6 +1,6 @@
-package NEW_CREATORS;
+package commands.server_creation_commands.creators;
 
-import data_xml.subject_area_structure.Coordinates;
+import data.model.Coordinates;
 import user_interface.ReadingMode;
 import user_interface.Terminal;
 

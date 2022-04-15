@@ -1,4 +1,4 @@
-package data_xml.subject_area_structure;
+package data.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,6 +39,6 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return String.format("%d, %d", x, y);
+        return String.format("[%d; %d]", x, y);
     }
 }

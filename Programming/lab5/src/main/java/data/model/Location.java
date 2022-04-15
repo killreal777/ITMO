@@ -1,8 +1,9 @@
-package data_xml.subject_area_structure;
+package data.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Objects;
 
 
 @XmlRootElement(name = "town")
@@ -65,7 +66,15 @@ public class Location {
 
     @Override
     public String toString() {
-        return String.format("%s (%d, %d, %f)", name, x, y, z);
+        return String.format("%s [%d; %d; %.2f]", name, x, y, z);
         //return Long.toString(x) + "\n" + Integer.toString(y) + "\n" + Float.toString(z) + "\n" + name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Location))
+            return false;
+        Location loc = (Location) obj;
+        return loc.name.equals(name) && loc.x.equals(x) && loc.y == y && loc.z == z;
     }
 }

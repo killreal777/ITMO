@@ -1,4 +1,4 @@
-package data_xml.subject_area_structure;
+package data.model;
 
 
 import javax.xml.bind.annotation.XmlElement;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @XmlRootElement(name = "organization")
 @XmlType(propOrder = {"id", "name", "coordinates", "creationDate", "annualTurnover",
         "fullName", "employeesCount", "type", "officialAddress"})
-public class Organization implements Comparable<Organization>{
+public class Organization implements Comparable<Organization> {
     private Integer id; //not null, > 0, unique, autogenerate
     private String name; //not null, not empty String
     private Coordinates coordinates; //not null
@@ -121,14 +121,11 @@ public class Organization implements Comparable<Organization>{
 
     @Override
     public String toString() {
-        String description = "";
-        description += String.format("Name: \"%s\"\tFull name: \"%s\"\n",
-                name, fullName);
-        description += String.format("Type: %s\tAnnual turnover: %s\tEmployees count: %s\n",
-                type, annualTurnover, employeesCount);
-        description += String.format("Address: %s\tCoordinates: %s",
-                officialAddress.toString(), coordinates.toString());
-        return description;
+        return "_______________________\n" +
+                String.format("ORGANIZATION id%s\n", id) +
+                String.format("Name: \"%s\"\tFull name: \"%s\"\tType: %s\n", name, fullName, type) +
+                String.format("Annual turnover: %s\tEmployees count: %s\n", annualTurnover, employeesCount) +
+                String.format("Address: %s\tCoordinates: %s", officialAddress, coordinates);
     }
 
     @Override

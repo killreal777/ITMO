@@ -2,29 +2,28 @@ package management;
 
 import commands.abstractions.Command;
 
-class CommandHistory {
+public class CommandHistory {
     private final Command[] history;
 
     CommandHistory() {
         this.history = new Command[10];
     }
 
-    void addCommand(Command command) {
-        for (int i = 0; i < 9; i++)
-            history[i] = history[i + 1];
-        history[9] = command;
+    public void addCommand(Command command) {
+        for (int i = 9; i > 0; i--)
+            history[i] = history[i - 1];
+        history[0] = command;
     }
 
     public String toString() {
-        if (history[9] == null)
+        if (history[0] == null)
             return "History is empty";
-        StringBuilder out = new StringBuilder();
-        for (Command command: history) {
-            if (command == null)
-                continue;
-            out.append(command.toString()).append("\n");
+        StringBuilder out = new StringBuilder("HISTORY");
+        for (int i = 0; i < 10; i++) {
+            if (history[i] == null)
+                break;
+            out.append(String.format("\n-%2d: %s", i + 1, history[i]));
         }
-        out.delete(out.lastIndexOf("\n"), out.lastIndexOf("\n") + 1);
         return out.toString();
     }
 }

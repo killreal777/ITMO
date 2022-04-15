@@ -1,6 +1,5 @@
 package commands.local_commands;
 
-import exceptions_handling.exceptions.ArgumentsAmountException;
 import commands.abstractions.Command;
 
 import java.util.HashMap;
@@ -11,36 +10,21 @@ public class Help extends Command {
 
 
     public Help(HashMap<String, Command> commands) {
+        this.name = "help";
+        this.description = "вывести справку по доступным командам";
         this.commands = commands;
     }
 
-
-    @Override
-    public Command getClone() {
-        return new Help(commands);
-    }
-
-    @Override
-    public void setArgs(String[] args) throws ArgumentsAmountException {
-        if (args.length != 0)
-            throw new ArgumentsAmountException(args, 0);
-    }
 
     @Override
     public void execute() {
         for (Command command : commands.values()) {
             String help = command.getHelp();
             String coloredHelp = highlightCommandName(help);
+            if (result != "")
+                result += "\n";
             result += (coloredHelp);
         }
-    }
-
-
-    @Override
-    public String getHelp() {
-        String name = "help";
-        String description = "вывести справку по доступным командам";
-        return String.format("%s: %s", name, description);
     }
 
 

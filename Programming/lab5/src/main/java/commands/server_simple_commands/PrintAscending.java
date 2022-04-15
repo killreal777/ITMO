@@ -1,29 +1,25 @@
 package commands.server_simple_commands;
 
-import commands.abstractions.Command;
+
 import commands.abstractions.ServerCommand;
+import data.model.Organization;
+
+import java.util.stream.Collectors;
 
 public class PrintAscending extends ServerCommand {
-    @Override
-    public Command getClone() {
-        return null;
-    }
-
-    @Override
-    public void setArgs(String[] args) {
-
+    public PrintAscending() {
+        this.name = "print_ascending";
+        this.description = "вывести элементы коллекции в порядке возрастания";
     }
 
     @Override
     public void execute() {
-
-    }
-
-
-    @Override
-    public String getHelp() {
-        String name = "print_ascending";
-        String description = "вывести элементы коллекции в порядке возрастания";
-        return String.format("%s: %s", name, description);
+        for (Object organization : dataManager.getCollection().stream().sorted().toArray()) {
+            if (result != "")
+                result += "\n";
+            this.result += organization.toString();
+        }
+        if (result.equals(""))
+            this.result = "Коллекция пуста";
     }
 }

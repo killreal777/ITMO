@@ -1,6 +1,4 @@
-package data_xml.auxiliary_structures;
-
-import data_xml.subject_area_structure.Organization;
+package data.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,7 +7,7 @@ import java.util.PriorityQueue;
 
 @XmlRootElement(name = "collection")
 public class CollectionRoot {
-    private PriorityQueue<Organization> collection;
+    private PriorityQueue<Organization> collection = new PriorityQueue<>();
 
 
     public CollectionRoot() {}

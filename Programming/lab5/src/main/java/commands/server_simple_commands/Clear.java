@@ -1,30 +1,20 @@
 package commands.server_simple_commands;
 
-import commands.abstractions.Command;
 import commands.abstractions.ServerCommand;
+import data.model.Organization;
+
 
 public class Clear extends ServerCommand {
-    @Override
-    public Command getClone() {
-        return new Clear();
-    }
-
-    @Override
-    public void setArgs(String[] args) {
-
+    public Clear() {
+        this.name = "clear";
+        this.description = "очистить коллекцию";
     }
 
     @Override
     public void execute() {
+        for (Organization organization : dataManager.getCollection())
+            dataManager.getIdGenerator().removeId(organization.getId());
         dataManager.getCollection().clear();
-        result += "Коллекция очищена";
-    }
-
-
-    @Override
-    public String getHelp() {
-        String name = "clear";
-        String description = "очистить коллекцию";
-        return String.format("%s: %s", name, description);
+        result = "Коллекция очищена";
     }
 }

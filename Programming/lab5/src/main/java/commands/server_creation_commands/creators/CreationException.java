@@ -1,4 +1,4 @@
-package NEW_CREATORS;
+package commands.server_creation_commands.creators;
 
 public class CreationException extends RuntimeException {
     private final String message;

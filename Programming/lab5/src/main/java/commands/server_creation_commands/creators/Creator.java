@@ -1,37 +1,29 @@
 package commands.server_creation_commands.creators;
 
-import exceptions_handling.exceptions.ArgumentValueException;
-import exceptions_handling.exceptions.ArgumentsAmountException;
 import user_interface.Terminal;
 
-public abstract class Creator {
-    protected Terminal terminal;
-    protected ArgumentSetter currentSetter;
-    protected boolean isReady;
+public abstract class Creator<CreatingObject> {
+    protected final Terminal terminal;
+    protected CreatingObject creatingObject;
 
-
-    public Creator(Terminal terminal) {
+    protected Creator(Terminal terminal) {
         this.terminal = terminal;
-        this.isReady = false;
     }
 
-
-    public void setReadArgs() throws ArgumentsAmountException, ArgumentValueException {
-        if (isReady)
-            return;
-        currentSetter.setArgument();
-        changeSetter();
-        setReadArgs();
+    public CreatingObject create() {
+        try {
+            if (creatingObject == null)
+                creatingObject = createNewInstance();
+            defineArguments();
+            CreatingObject definedObject = creatingObject;
+            creatingObject = null;
+            return definedObject;
+        } catch (CreationException e) {
+            terminal.print(e.getMessage());
+            return create();
+        }
     }
 
-    public void setExternalArgs(String[] args) throws ArgumentsAmountException, ArgumentValueException {
-        currentSetter.setArgument(args);
-        changeSetter();
-        setReadArgs();
-    }
-
-
-    protected abstract void changeSetter();
-
-    public abstract Object getResult();
+    protected abstract CreatingObject createNewInstance();
+    protected abstract void defineArguments() throws CreationException;
 }

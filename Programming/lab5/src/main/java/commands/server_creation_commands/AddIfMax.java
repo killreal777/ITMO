@@ -1,18 +1,16 @@
 package commands.server_creation_commands;
 
-import commands.abstractions.Command;
-import data_xml.subject_area_structure.Organization;
+import data.model.Organization;
 import user_interface.Terminal;
+
 
 public class AddIfMax extends Add {
     public AddIfMax(Terminal terminal) {
         super(terminal);
+        this.name = "add_if_max {element}";
+        this.description = "добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции";
     }
 
-    @Override
-    public Command getClone() {
-        return new AddIfMax(this.terminal);
-    }
 
     @Override
     public void execute() {
@@ -22,14 +20,6 @@ public class AddIfMax extends Add {
                 return;
             }
         }
-        dataManager.getCollection().add(this.organization);
-        result = "Элемент успешно добавлен";
-    }
-
-    @Override
-    public String getHelp() {
-        String name = "add_if_max {element}";
-        String description = "добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции";
-        return String.format("%s: %s", name, description);
+        super.execute();
     }
 }

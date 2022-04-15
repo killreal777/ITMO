@@ -1,32 +1,20 @@
 package commands.local_commands;
 
-import exceptions_handling.exceptions.ArgumentsAmountException;
-import commands.abstractions.Command;
 import commands.abstractions.ServerCommand;
+import management.CommandHistory;
+
 
 public class History extends ServerCommand {
-    @Override
-    public Command getClone() {
-        return new History();
-    }
+    private final CommandHistory history;
 
-    @Override
-    public void setArgs(String[] args) {
-        if (args.length != 0)
-            throw new ArgumentsAmountException(args, 0);
+    public History(CommandHistory history) {
+        this.name = "history";
+        this.description = "вывести последние 10 команд (без их аргументов)";
+        this.history = history;
     }
 
     @Override
     public void execute() {
-        String history = this.dataManager.getHistory();
-        this.result += history;
-    }
-
-
-    @Override
-    public String getHelp() {
-        String name = "history";
-        String description = "вывести последние 10 команд (без их аргументов)";
-        return String.format("%s: %s", name, description);
+        this.result = history.toString();
     }
 }
