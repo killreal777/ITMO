@@ -15,6 +15,7 @@ public class Clear extends ServerCommand {
         for (Organization organization : dataManager.getCollection())
             dataManager.getIdGenerator().removeId(organization.getId());
         dataManager.getCollection().clear();
+        dataManager.getCollectionInfo().setElementsAmount(0);
         result = "Коллекция очищена";
     }
 }

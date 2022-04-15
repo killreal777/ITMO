@@ -5,6 +5,8 @@ import user_interface.Terminal;
 import commands.abstractions.ServerCommand;
 import data.model.Organization;
 
+import java.time.LocalDateTime;
+
 
 public class Add extends ServerCommand {
     private final OrganizationCreator creator;
@@ -24,6 +26,7 @@ public class Add extends ServerCommand {
     public void setArgs(String[] args) {
         super.setArgs(args);
         organization = creator.create();
+        organization.setCreationDate(LocalDateTime.now());
     }
 
     @Override
@@ -31,6 +34,7 @@ public class Add extends ServerCommand {
         int id = dataManager.getIdGenerator().generateId();
         organization.setId(id);
         this.dataManager.getCollection().add(organization);
+        this.dataManager.getCollectionInfo().incrementElementsAmount();
         this.result = "Элемент успешно добавлен";
     }
 }

@@ -8,13 +8,14 @@ import java.time.LocalDateTime;
 
 
 @XmlRootElement(name = "organization")
-@XmlType(propOrder = {"id", "name", "coordinates", "creationDate", "annualTurnover",
+@XmlType(propOrder = {"id", "name", "coordinates", "creationDateString", "annualTurnover",
         "fullName", "employeesCount", "type", "officialAddress"})
 public class Organization implements Comparable<Organization> {
     private Integer id; //not null, > 0, unique, autogenerate
     private String name; //not null, not empty String
     private Coordinates coordinates; //not null
     private java.time.LocalDateTime creationDate; //not null, autogenerate
+    private String creationDateString;
     private Long annualTurnover; //not null, > 0
     private String fullName; //not null, unique
     private int employeesCount; //>0
@@ -52,8 +53,8 @@ public class Organization implements Comparable<Organization> {
     }
 
     @XmlElement(name = "creation_date")
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public String getCreationDateString() {
+        return creationDateString;
     }
 
     @XmlElement(name = "annual_turnover")
@@ -94,8 +95,13 @@ public class Organization implements Comparable<Organization> {
         this.coordinates = coordinates;
     }
 
+    public void setCreationDateString(String creationDateString) {
+        this.creationDateString = creationDateString;
+        this.creationDate = LocalDateTime.parse(creationDateString);
+    }
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+        this.creationDateString = creationDate.toString();
     }
 
     public void setAnnualTurnover(Long annualTurnover) {
@@ -121,11 +127,13 @@ public class Organization implements Comparable<Organization> {
 
     @Override
     public String toString() {
+        String[] dateTime = creationDateString.split("T");
         return "_______________________\n" +
                 String.format("ORGANIZATION id%s\n", id) +
                 String.format("Name: \"%s\"\tFull name: \"%s\"\tType: %s\n", name, fullName, type) +
                 String.format("Annual turnover: %s\tEmployees count: %s\n", annualTurnover, employeesCount) +
-                String.format("Address: %s\tCoordinates: %s", officialAddress, coordinates);
+                String.format("Address: %s\tCoordinates: %s\n", officialAddress, coordinates) +
+                String.format("Creation date: %s\tCreation time: %s", dateTime[0], dateTime[1]);
     }
 
     @Override

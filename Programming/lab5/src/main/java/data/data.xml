@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <data>
     <collection_info>
-        <elements_amount>0</elements_amount>
+        <elements_amount>2</elements_amount>
     </collection_info>
     <collection>
         <organization>
             <id>1</id>
-            <name>Lesha Inc</name>
+            <name>1</name>
             <coordinates>
-                <x>175</x>
-                <y>120</y>
+                <x>1</x>
+                <y>1</y>
             </coordinates>
-            <annual_turnover>200</annual_turnover>
-            <full_name>Alexey Incorparated</full_name>
-            <employees_count>2</employees_count>
-            <type>COMMERCIAL</type>
+            <creation_date>2022-04-15T14:52:40.899</creation_date>
+            <annual_turnover>1</annual_turnover>
+            <full_name>1</full_name>
+            <employees_count>1</employees_count>
+            <type>TRUST</type>
             <official_address>
-                <zip_code>195030</zip_code>
+                <zip_code>1</zip_code>
                 <town>
-                    <x>175</x>
-                    <y>120</y>
-                    <z>50.0</z>
-                    <name>Velikie Luki</name>
+                    <x>1</x>
+                    <y>1</y>
+                    <z>1.0</z>
+                    <name>1</name>
                 </town>
             </official_address>
         </organization>
         <organization>
             <id>2</id>
-            <name>Apple</name>
+            <name>3</name>
             <coordinates>
-                <x>1920</x>
-                <y>1080</y>
+                <x>3</x>
+                <y>3</y>
             </coordinates>
-            <annual_turnover>4820</annual_turnover>
-            <full_name>Grandmother's Apple Juice</full_name>
-            <employees_count>12</employees_count>
+            <creation_date>2022-04-15T15:01:10.564</creation_date>
+            <annual_turnover>3</annual_turnover>
+            <full_name>3</full_name>
+            <employees_count>3</employees_count>
             <type>OPEN_JOINT_STOCK_COMPANY</type>
             <official_address>
-                <zip_code>434950</zip_code>
+                <zip_code>3</zip_code>
                 <town>
-                    <x>1900</x>
-                    <y>1000</y>
-                    <z>10.0</z>
-                    <name>Rostov-na-Donu</name>
+                    <x>3</x>
+                    <y>3</y>
+                    <z>3.0</z>
+                    <name>3</name>
                 </town>
             </official_address>
         </organization>

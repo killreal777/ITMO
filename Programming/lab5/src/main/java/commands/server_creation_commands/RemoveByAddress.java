@@ -34,6 +34,7 @@ public class RemoveByAddress extends ServerCommand {
                 continue;
             dataManager.getCollection().remove(organization);
             dataManager.getIdGenerator().removeId(organization.getId());
+            dataManager.getCollectionInfo().decrementElementsAmount();
             result = String.format("Удалена оганизация \"%s\"", organization.getName());
             return;
         }

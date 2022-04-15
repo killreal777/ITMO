@@ -1,5 +1,6 @@
 package data.control;
 
+import data.model.CollectionInfo;
 import data.model.DataRoot;
 import data.model.Organization;
 
@@ -22,6 +23,7 @@ public class DataManager {
         loadData();
     }
 
+
     private void loadData() {
         try {
             this.dataRoot = jaxbConverter.readXml();
@@ -35,7 +37,6 @@ public class DataManager {
         }
     }
 
-
     public void saveData() {
         try {
             jaxbConverter.writeXml(dataRoot);
@@ -45,17 +46,15 @@ public class DataManager {
     }
 
 
-    public IdGenerator getIdGenerator() {
-        return idGenerator;
-    }
-
-
     public PriorityQueue<Organization> getCollection() {
         return dataRoot.getCollectionRoot().getCollection();
     }
 
-    public String getInfo() {
-        return "Info works";
-        //return info.toString();    // TODO
+    public CollectionInfo getCollectionInfo() {
+        return dataRoot.getCollectionInfo();
+    }
+
+    public IdGenerator getIdGenerator() {
+        return idGenerator;
     }
 }

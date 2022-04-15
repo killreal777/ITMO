@@ -11,7 +11,6 @@ public class Info extends ServerCommand {
 
     @Override
     public void execute() {
-        String collectionInfo = this.dataManager.getInfo();
-        result += collectionInfo;
+        this.result = dataManager.getCollectionInfo().toString();
     }
 }

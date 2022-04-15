@@ -1,6 +1,7 @@
 package user_interface;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 class InputReader implements Reader {
@@ -20,15 +21,18 @@ class InputReader implements Reader {
 
     @Override
     public String[] readLine(ReadingMode mode, String invitationMessage) {
-        System.out.print(invitationMessage);
-        switch (mode) {
-            case SPLIT:
-                return parseInputLine(scanner.nextLine());
-            case ENTIRE:
-                return new String[] {scanner.nextLine()};
+        try {
+            System.out.print(invitationMessage);
+            switch (mode) {
+                case SPLIT: return parseInputLine(scanner.nextLine());
+                case ENTIRE: return new String[]{scanner.nextLine()};
+            }
+            System.err.println("Incorrect reading mode \nEmpty String array has been returned");
+            return new String[0];
+        } catch (NoSuchElementException e) {
+            System.exit(0);
+            throw new AssertionError();
         }
-        System.err.println("Incorrect reading mode \nEmpty String array has been returned");
-        return new String[0];
     }
 
 

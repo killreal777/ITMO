@@ -32,6 +32,7 @@ public class RemoveByID extends ServerCommand {
                 continue;
             dataManager.getCollection().remove(organization);
             dataManager.getIdGenerator().removeId(id);
+            dataManager.getCollectionInfo().incrementElementsAmount();
             result = String.format("Удалена оганизация \"%s\"", organization.getName());
             return;
         }

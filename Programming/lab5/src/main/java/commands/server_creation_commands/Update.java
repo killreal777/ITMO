@@ -6,6 +6,8 @@ import commands.server_creation_commands.creators.OrganizationCreator;
 import data.model.Organization;
 import user_interface.Terminal;
 
+import java.time.LocalDateTime;
+
 
 public class Update extends ServerCommand {
     private final OrganizationCreator creator;
@@ -27,6 +29,7 @@ public class Update extends ServerCommand {
         try {
             this.id = Integer.parseInt(args[0]);
             this.organization = creator.create();
+            this.organization.setCreationDate(LocalDateTime.now());
             this.organization.setId(id);
         } catch (NumberFormatException e) {
             throw new CommandArgumentException("Неверный тип аргумента (ожидалось целое число типа Long)");
