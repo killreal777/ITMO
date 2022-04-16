@@ -1,7 +1,7 @@
 package commands.server_creation_commands.creators;
 
 import data.model.Address;
-import user_interface.ReadingMode;
+import user_interface.Terminal.ReadingMode;
 import user_interface.Terminal;
 
 

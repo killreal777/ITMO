@@ -19,6 +19,7 @@ public class DataManager {
     public DataManager() {
         this.jaxbConverter = new DataJaxbConverter();
         this.idGenerator = new IdGenerator();
+        //jaxbConverter.setFilePath(System.getenv("LAB5_DATA_COLLECTION_FILE"));
         jaxbConverter.setFilePath("src/main/java/data/data.xml");
         loadData();
     }

@@ -1,4 +1,4 @@
-package management;
+package commands;
 
 import commands.abstractions.*;
 import commands.local_commands.*;
@@ -20,7 +20,7 @@ public class CommandManager {
 
         // local commands
         commands.put("history", new History(history));
-        commands.put("execute_script", new ExecuteScript());
+        commands.put("execute_script", new ExecuteScript(terminal));
         commands.put("help", new Help(commands));
         commands.put("exit", new Exit());
 

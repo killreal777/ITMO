@@ -1,4 +1,4 @@
-package management;
+package commands;
 
 public class CommandNotFoundException extends RuntimeException {
     private final String commandName;

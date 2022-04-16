@@ -1,7 +1,7 @@
 package commands.server_creation_commands.creators;
 
 import data.model.Coordinates;
-import user_interface.ReadingMode;
+import user_interface.Terminal.ReadingMode;
 import user_interface.Terminal;
 
 public class CoordinatesCreator extends Creator<Coordinates> {

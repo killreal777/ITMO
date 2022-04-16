@@ -1,4 +1,4 @@
-package management;
+package commands;
 
 import commands.abstractions.Command;
 

@@ -1,4 +1,14 @@
 package user_interface;
 
-public interface Terminal extends Reader, Printer {
+import java.io.FileNotFoundException;
+
+public interface Terminal {
+    String[] readLine(ReadingMode mode);
+    String[] readLine(ReadingMode mode, String invitationMessage);
+    void readFile(String fileName) throws FileNotFoundException;
+    void print(String message);
+
+    enum ReadingMode {
+        SPLIT, ENTIRE
+    }
 }

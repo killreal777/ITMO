@@ -2,7 +2,7 @@ package commands.server_creation_commands.creators;
 
 import data.model.Organization;
 import data.model.OrganizationType;
-import user_interface.ReadingMode;
+import user_interface.Terminal.ReadingMode;
 import user_interface.Terminal;
 
 
