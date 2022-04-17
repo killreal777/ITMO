@@ -22,7 +22,7 @@ public class ExecutionManager {
     public ExecutionManager() {
         this.terminal = new ConsoleTerminal();
         this.commandManager = new CommandManager(terminal);
-        this.dataManager = new DataManager();
+        this.dataManager = new DataManager(terminal);
         terminal.print("Программа запущена \nДля вывода справки по доступным командам введите \"help\"");
     }
 

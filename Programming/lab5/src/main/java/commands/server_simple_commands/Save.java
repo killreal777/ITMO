@@ -11,6 +11,7 @@ public class Save extends ServerCommand {
 
     @Override
     public void execute() {
+        result = "Коллекция сохранена";
         this.dataManager.saveData();
     }
 }
