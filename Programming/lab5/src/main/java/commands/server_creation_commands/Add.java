@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 
 public class Add extends ServerCommand {
-    private final OrganizationCreator creator;
     protected final Terminal terminal;
     protected Organization organization;
 
@@ -17,20 +16,15 @@ public class Add extends ServerCommand {
     public Add(Terminal terminal) {
         this.name = "add {element}";
         this.description = "добавить новый элемент в коллекцию";
-        this.creator = new OrganizationCreator(terminal);
         this.terminal = terminal;
     }
 
 
     @Override
-    public void setArgs(String[] args) {
-        super.setArgs(args);
+    public void execute() {
+        OrganizationCreator creator = new OrganizationCreator(terminal, dataManager.getCollection());
         organization = creator.create();
         organization.setCreationDate(LocalDateTime.now());
-    }
-
-    @Override
-    public void execute() {
         int id = dataManager.getIdGenerator().generateId();
         organization.setId(id);
         this.dataManager.getCollection().add(organization);

@@ -1,9 +1,9 @@
-package commands.abstractions;
+package data;
 
-public class CommandArgumentException extends RuntimeException {
+public class FieldDefinitionException extends RuntimeException {
     private final String message;
 
-    public CommandArgumentException(String message) {
+    public FieldDefinitionException(String message) {
         this.message = message;
     }
 

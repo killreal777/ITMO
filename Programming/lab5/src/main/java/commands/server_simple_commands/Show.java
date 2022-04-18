@@ -12,7 +12,6 @@ public class Show extends ServerCommand {
 
     @Override
     public void execute() {
-        System.out.printf("DATA Manager: %s%n", dataManager);   // for test
         for (Organization org : dataManager.getCollection()) {
             if (result != "")
                 result += "\n";

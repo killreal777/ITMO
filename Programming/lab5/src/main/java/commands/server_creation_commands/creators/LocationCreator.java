@@ -1,7 +1,7 @@
 package commands.server_creation_commands.creators;
 
+import data.FieldDefinitionException;
 import data.model.Location;
-import user_interface.Terminal.ReadingMode;
 import user_interface.Terminal;
 
 
@@ -22,7 +22,7 @@ public class LocationCreator extends Creator<Location> {
     }
 
     @Override
-    protected void defineArguments() {
+    protected void defineFields() {
         switch (lastSetArgument) {
             case NAME: defineX();
             case X: defineY();
@@ -33,49 +33,40 @@ public class LocationCreator extends Creator<Location> {
 
 
     private void defineX() throws RuntimeException {
-        terminal.print("Введите координату X локации");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
+        String[] input = terminal.readLineSplit("Введите координату X локации: " + formatRequirements("Long, not null"));
+        checkArgumentsAmount(input, 1);
         try {
             creatingObject.setX(Long.parseLong(input[0]));
         } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа Long.");
+            throw new FieldDefinitionException("Ожидалось целое число (Long)");
         }
         this.lastSetArgument = LocationArgument.X;
     }
 
     private void defineY() {
-        terminal.print("Введите координату Y локации");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
+        String[] input = terminal.readLineSplit("Введите координату Y локации: " + formatRequirements("int"));
+        checkArgumentsAmount(input, 1);
         try {
             creatingObject.setY(Integer.parseInt(input[0]));
         } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа int.");
+            throw new FieldDefinitionException("Ожидалось целое число (int)");
         }
         this.lastSetArgument = LocationArgument.Y;
     }
 
     private void defineZ() {
-        terminal.print("Введите координату Z локации");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
+        String[] input = terminal.readLineSplit("Введите координату Z локации: " + formatRequirements("float"));
+        checkArgumentsAmount(input, 1);
         try {
-            creatingObject.setZ(Long.parseLong(input[0]));
+            creatingObject.setZ(Float.parseFloat(input[0]));
         } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа Float.");
+            throw new FieldDefinitionException("Ожидалось число с плавающей запятой (float)");
         }
         this.lastSetArgument = LocationArgument.Z;
     }
 
     private void defineName() {
-        terminal.print("Введите название локации");
-        String input = terminal.readLine(ReadingMode.ENTIRE)[0];
-        if (input.equals(""))
-            throw new CreationException("Название локации не может быть пустой строкой.");
+        String input = terminal.readLineEntire("Введите название локации: " + formatRequirements("String, not null"));
         creatingObject.setName(input);
         this.lastSetArgument = LocationArgument.NAME;
     }

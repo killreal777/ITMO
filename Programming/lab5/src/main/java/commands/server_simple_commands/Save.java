@@ -2,6 +2,8 @@ package commands.server_simple_commands;
 
 import commands.abstractions.ServerCommand;
 
+import java.io.FileNotFoundException;
+
 
 public class Save extends ServerCommand {
     public Save() {
@@ -11,7 +13,13 @@ public class Save extends ServerCommand {
 
     @Override
     public void execute() {
-        result = "Коллекция сохранена";
-        this.dataManager.saveData();
+        try {
+            this.dataManager.saveData();
+            result = "Коллекция сохранена";
+        } catch (FileNotFoundException e) {
+            result = "Невозможно сохранить коллекцию в файл: недостаточно прав";
+        }
+
+
     }
 }

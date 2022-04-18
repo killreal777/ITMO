@@ -18,11 +18,13 @@ public class CommandHistory {
     public String toString() {
         if (history[0] == null)
             return "History is empty";
-        StringBuilder out = new StringBuilder("HISTORY");
+        String out = "";
         for (int i = 0; i < 10; i++) {
             if (history[i] == null)
                 break;
-            out.append(String.format("\n-%2d: %s", i + 1, history[i]));
+            if (!out.equals(""))
+                out += "\n";
+            out += String.format("-%2d: %s", i + 1, history[i].toString().split(" ")[0]);
         }
         return out.toString();
     }

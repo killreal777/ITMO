@@ -1,7 +1,7 @@
 package commands.server_creation_commands.creators;
 
 import data.model.Address;
-import user_interface.Terminal.ReadingMode;
+import data.FieldDefinitionException;
 import user_interface.Terminal;
 
 
@@ -24,7 +24,7 @@ public class AddressCreator extends Creator<Address> {
     }
 
     @Override
-    protected void defineArguments() throws CreationException {
+    protected void defineFields() throws FieldDefinitionException {
         switch (lastSetArgument) {
             case TOWN: defineZipCode();
             case ZIP_CODE: defineTown();
@@ -33,10 +33,7 @@ public class AddressCreator extends Creator<Address> {
 
 
     private void defineZipCode() {
-        terminal.print("Введите Zip Code организации");
-        String input = terminal.readLine(ReadingMode.ENTIRE)[0];
-        if (input.equals(""))
-            throw new CreationException("Zip Code не может быть пустой строкой.");
+        String input = terminal.readLineEntire("Введите Zip Code организации: " + formatRequirements("String, not null, length <= 16"));
         creatingObject.setZipCode(input);
         this.lastSetArgument = AddressArgument.ZIP_CODE;
     }

@@ -1,20 +1,24 @@
 package commands.server_creation_commands.creators;
 
+import data.FieldDefinitionException;
 import data.model.Organization;
 import data.model.OrganizationType;
-import user_interface.Terminal.ReadingMode;
 import user_interface.Terminal;
+
+import java.util.PriorityQueue;
 
 
 public class OrganizationCreator extends Creator<Organization> {
+    private final PriorityQueue<Organization> dataCollection;
     private final CoordinatesCreator coordinatesCreator;
     private final AddressCreator addressCreator;
     private enum OrganizationArgument {NAME, COORDINATES, ANNUAL_TURNOVER, FULL_NAME, EMPLOYEES_COUNT, TYPE, ADDRESS}
     private OrganizationArgument lastSetArgument;
 
 
-    public OrganizationCreator(Terminal terminal) {
+    public OrganizationCreator(Terminal terminal, PriorityQueue<Organization> dataCollection) {
         super(terminal);
+        this.dataCollection = dataCollection;
         this.coordinatesCreator = new CoordinatesCreator(terminal);
         this.addressCreator = new AddressCreator(terminal);
         this.lastSetArgument = OrganizationArgument.ADDRESS;
@@ -27,7 +31,7 @@ public class OrganizationCreator extends Creator<Organization> {
     }
 
     @Override
-    protected void defineArguments() throws CreationException {
+    protected void defineFields() throws FieldDefinitionException {
         switch (lastSetArgument) {
             case ADDRESS: defineName();
             case NAME: defineCoordinates();
@@ -41,10 +45,7 @@ public class OrganizationCreator extends Creator<Organization> {
 
 
     private void defineName() {
-        terminal.print("Введите название организации");
-        String input = terminal.readLine(ReadingMode.ENTIRE)[0];
-        if (input.equals(""))
-            throw new CreationException("Название организации не может быть пустой строкой.");
+        String input = terminal.readLineEntire("Введите название организации: " + formatRequirements("String, not null, not empty string"));
         creatingObject.setName(input);
         this.lastSetArgument = OrganizationArgument.NAME;
     }
@@ -55,45 +56,40 @@ public class OrganizationCreator extends Creator<Organization> {
     }
 
     private void defineAnnualTurnover() {
-        terminal.print("Введите ежегодный товарооборот");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
-        Long annualTurnover = null;
+        String[] input = terminal.readLineSplit("Введите ежегодный товарооборот: " + formatRequirements("Long, not null, > 0"));
+        checkArgumentsAmount(input, 1);
         try {
-            annualTurnover = Long.parseLong(input[0]);
+            Long annualTurnover = Long.parseLong(input[0]);
+            creatingObject.setAnnualTurnover(annualTurnover);
         } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа Long.");
+            throw new FieldDefinitionException("Ожидалось целое число (Long)");
         }
-        if (annualTurnover <= 0)
-            throw new CreationException("Ежегодный товарооборот должен быть больше нуля.");
-        creatingObject.setAnnualTurnover((long) annualTurnover);
         this.lastSetArgument = OrganizationArgument.ANNUAL_TURNOVER;
     }
 
     private void defineFullName() {
-        terminal.print("Введите полное название организации");
-        String input = terminal.readLine(ReadingMode.ENTIRE)[0];
-        if (input.equals(""))
-            throw new CreationException("Полное название организации не может быть пустой строкой.");
+        String input = terminal.readLineEntire("Введите полное название организации: " + formatRequirements("String, not null, unique"));
+        checkFullNameUniqueness(input);
         creatingObject.setFullName(input);
         this.lastSetArgument = OrganizationArgument.FULL_NAME;
     }
 
-    private void defineEmployeesCount() {
-        terminal.print("Введите число сотрудников");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
-        int employeesCount = 0;
-        try {
-            employeesCount = Integer.parseInt(input[0]);
-        } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа int.");
+    private void checkFullNameUniqueness(String fullName) {
+        for (Organization org : dataCollection) {
+            if (org.getFullName().equals(fullName))
+                throw new FieldDefinitionException(String.format("Полное имя \"%s\" неуникально", fullName));
         }
-        if (employeesCount <= 0)
-            throw new CreationException("Чилсо сотрудников должно быть больше нуля.");
-        creatingObject.setEmployeesCount(employeesCount);
+    }
+
+    private void defineEmployeesCount() {
+        String[] input = terminal.readLineSplit("Введите число сотрудников: " + formatRequirements("int, > 0"));
+        checkArgumentsAmount(input, 1);
+        try {
+            int employeesCount = Integer.parseInt(input[0]);
+            creatingObject.setEmployeesCount(employeesCount);
+        } catch (NumberFormatException e) {
+            throw new FieldDefinitionException("Ожидалось целое число (int)");
+        }
         this.lastSetArgument = OrganizationArgument.EMPLOYEES_COUNT;
     }
 
@@ -104,14 +100,12 @@ public class OrganizationCreator extends Creator<Organization> {
                 "2 - общество с ограниченной ответственностью\n" +
                 "3 - открытое акционерное общество\n" +
                 "Введите номер варианта: ";
-        terminal.print(message);
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
+        String[] input = terminal.readLineSplit(message);
+        checkArgumentsAmount(input, 1);
         try {
             creatingObject.setType(OrganizationType.getByID(Integer.parseInt(input[0])));
         } catch (NumberFormatException | OrganizationType.InvalidIDException e) {
-            throw new CreationException("Ожидалось целое число от 0 до 3");
+            throw new FieldDefinitionException("Ожидалось целое число от 0 до 3");
         }
         this.lastSetArgument = OrganizationArgument.TYPE;
     }

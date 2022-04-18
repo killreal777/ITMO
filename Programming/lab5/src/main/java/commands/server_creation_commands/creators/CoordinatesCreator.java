@@ -1,7 +1,7 @@
 package commands.server_creation_commands.creators;
 
 import data.model.Coordinates;
-import user_interface.Terminal.ReadingMode;
+import data.FieldDefinitionException;
 import user_interface.Terminal;
 
 public class CoordinatesCreator extends Creator<Coordinates> {
@@ -21,7 +21,7 @@ public class CoordinatesCreator extends Creator<Coordinates> {
     }
 
     @Override
-    protected void defineArguments() throws CreationException {
+    protected void defineFields() throws FieldDefinitionException {
         switch (lastSetArgument) {
             case Y: defineX();
             case X: defineY();
@@ -30,27 +30,23 @@ public class CoordinatesCreator extends Creator<Coordinates> {
 
 
     private void defineX() throws RuntimeException {
-        terminal.print("Введите координату X организации");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
+        String[] input = terminal.readLineSplit("Введите координату X организации: " + formatRequirements("int, > -535"));
+        checkArgumentsAmount(input, 1);
         try {
             creatingObject.setX(Integer.parseInt(input[0]));
         } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа int.");
+            throw new FieldDefinitionException("Ожидалось целое число (int)");
         }
         this.lastSetArgument = CoordinatesArgument.X;
     }
 
     private void defineY() {
-        terminal.print("Введите координату Y организации");
-        String[] input = terminal.readLine(ReadingMode.SPLIT);
-        if (input.length != 1)
-            throw new CreationException(String.format("Ожидался 1 аргумент (Вы ввели %s).", input.length));
+        String[] input = terminal.readLineSplit("Введите координату Y организации: " + formatRequirements("int, <= 630"));
+        checkArgumentsAmount(input, 1);
         try {
             creatingObject.setY(Integer.parseInt(input[0]));
         } catch (NumberFormatException e) {
-            throw new CreationException("Ожидалось число типа int.");
+            throw new FieldDefinitionException("Ожидалось целое число (int)");
         }
         this.lastSetArgument = CoordinatesArgument.Y;
     }

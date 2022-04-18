@@ -25,7 +25,7 @@ public class DataManager {
     }
 
 
-    public void saveData() {
+    public void saveData() throws FileNotFoundException {
         try {
             jaxbConverter.writeXml(dataRoot);
         } catch (JAXBException | IOException e) {

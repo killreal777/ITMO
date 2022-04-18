@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 
 public class Update extends ServerCommand {
-    private final OrganizationCreator creator;
     protected final Terminal terminal;
     protected Organization organization;
     private int id;
@@ -18,7 +17,6 @@ public class Update extends ServerCommand {
     public Update(Terminal terminal) {
         this.name = "update id {element}";
         this.description = "обновить значение элемента коллекции, id которого равен заданному";
-        this.creator = new OrganizationCreator(terminal);
         this.terminal = terminal;
     }
 
@@ -28,7 +26,6 @@ public class Update extends ServerCommand {
         checkArgumentsAmount(args, 1);
         try {
             this.id = Integer.parseInt(args[0]);
-            this.organization = creator.create();
             this.organization.setCreationDate(LocalDateTime.now());
             this.organization.setId(id);
         } catch (NumberFormatException e) {
@@ -39,10 +36,12 @@ public class Update extends ServerCommand {
 
     @Override
     public void execute() {
+        OrganizationCreator creator = new OrganizationCreator(terminal, dataManager.getCollection());
         for (Organization organization : dataManager.getCollection()) {
             if (organization.getId() != id)
                 continue;
             dataManager.getCollection().remove(organization);
+            this.organization = creator.create();
             dataManager.getCollection().add(this.organization);
             result = String.format("Обновлена оганизация \"%s\"", organization.getName());
             return;

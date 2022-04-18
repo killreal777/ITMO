@@ -7,7 +7,6 @@ import commands.abstractions.CommandArgumentException;
 import commands.abstractions.ServerCommand;
 import data.control.DataManager;
 import user_interface.ConsoleTerminal;
-import user_interface.Terminal.ReadingMode;
 import user_interface.Terminal;
 
 import java.util.Arrays;
@@ -21,8 +20,8 @@ public class ExecutionManager {
 
     public ExecutionManager() {
         this.terminal = new ConsoleTerminal();
-        this.commandManager = new CommandManager(terminal);
         this.dataManager = new DataManager(terminal);
+        this.commandManager = new CommandManager(terminal);
         terminal.print("Программа запущена \nДля вывода справки по доступным командам введите \"help\"");
     }
 
@@ -39,8 +38,8 @@ public class ExecutionManager {
     }
 
     private Command readCommand() throws CommandNotFoundException {
-        String[] inputLine = terminal.readLine(ReadingMode.SPLIT);
-        if (inputLine.length == 0)
+        String[] inputLine = terminal.readLineSplit();
+        if (inputLine[0].equals(""))
             return readCommand();   // empty input -> read command again
         String name = inputLine[0];
         String[] args = Arrays.copyOfRange(inputLine, 1, inputLine.length);
@@ -51,7 +50,6 @@ public class ExecutionManager {
         if (command instanceof ServerCommand)
             ((ServerCommand) command).setDataManager(dataManager);
         command.execute();
-
         terminal.print(command.getResult());
     }
 }

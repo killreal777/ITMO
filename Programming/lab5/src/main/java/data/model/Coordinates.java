@@ -1,13 +1,15 @@
 package data.model;
 
+import data.FieldDefinitionException;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement(name = "coordinates")
 public class Coordinates {
-    private int x; //Значение поля должно быть больше -535
-    private int y; //Максимальное значение поля: 630
+    private int x;      // > -535
+    private int y;      // <= 630
 
     public Coordinates(int x, int y) {
         this.x = x;
@@ -29,10 +31,14 @@ public class Coordinates {
 
 
     public void setX(int x) {
+        if (x <= -535)
+            throw new FieldDefinitionException("Значение координаты X организации должно быть больше -535");
         this.x = x;
     }
 
     public void setY(int y) {
+        if (y > 630)
+            throw new FieldDefinitionException("Значение координаты Y организации должно быть меньше или равно 630");
         this.y = y;
     }
 

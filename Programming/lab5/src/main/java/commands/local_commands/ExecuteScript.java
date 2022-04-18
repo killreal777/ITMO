@@ -5,12 +5,10 @@ import commands.abstractions.CommandArgumentException;
 import user_interface.Terminal;
 
 import java.io.FileNotFoundException;
-import java.util.Stack;
-
 
 public class ExecuteScript extends Command {
-    private final static Stack<String> executingScripts = new Stack<>();
     private final Terminal terminal;
+    private String scriptPath;
 
 
     public ExecuteScript(Terminal terminal) {
@@ -23,26 +21,21 @@ public class ExecuteScript extends Command {
     @Override
     public void setArgs(String[] args) {
         checkArgumentsAmount(args, 1);
-        checkRecursion(args[0]);
-        executingScripts.push(args[0]);
-    }
-
-    private void checkRecursion(String fileName) {
-        if (executingScripts.contains(fileName)) {
-            executingScripts.clear();
-            result = String.format("Обнаружена рекурсия. Скрипт %s не будет исполнен.", fileName);
-            throw new CommandArgumentException(result);
-        }
+        this.scriptPath = args[0];
     }
 
 
     @Override
     public void execute() {
         try {
-            terminal.readFile(executingScripts.peek());
-            result = String.format("Скрипт %s начал исполняться", executingScripts.peek());
+            terminal.readScript(scriptPath);
+            result = String.format("Скрипт %s начал исполняться", scriptPath);
         } catch (FileNotFoundException e) {
-            result = "Указанный файл не найден (возможно, файл закрыт для чтения)";
+            result = String.format("Файл со скриптом %s не найден (возможно, файл закрыт для чтения)", scriptPath);
+            throw new CommandArgumentException(result);
+        } catch (IllegalArgumentException e) {
+            result = String.format("Обнаружена рекурсия. Скрипт %s не будет исполнен", scriptPath);
+            throw new CommandArgumentException(result);
         }
     }
 }

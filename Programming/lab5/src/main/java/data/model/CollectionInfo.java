@@ -7,10 +7,11 @@ import java.time.LocalDateTime;
 
 
 @XmlRootElement(name = "collection_info")
-@XmlType(propOrder = {"collectionType", "initializationDate", "elementsAmount"})
+@XmlType(propOrder = {"collectionType", "initializationDateString", "elementsAmount"})
 public class CollectionInfo {
-    private String collectionType;
-    private LocalDateTime initializationDate;
+    private String collectionType = "PriorityQueue<Organization>";
+    private LocalDateTime initializationDate = LocalDateTime.now();
+    private String initializationDateString = initializationDate.toString();      // this field is for XML storing
     private int elementsAmount;
 
 
@@ -26,14 +27,15 @@ public class CollectionInfo {
     }
 
 
+
     @XmlElement(name = "collection_type")
     public String getCollectionType() {
         return collectionType;
     }
 
     @XmlElement(name = "initialization_date")
-    public LocalDateTime getInitializationDate() {
-        return initializationDate;
+    public String getInitializationDateString() {
+        return initializationDateString;
     }
 
     @XmlElement(name = "elements_amount")
@@ -42,12 +44,14 @@ public class CollectionInfo {
     }
 
 
+
     public void setCollectionType(String collectionType) {
         this.collectionType = collectionType;
     }
 
     public void setInitializationDate(LocalDateTime initializationDate) {
         this.initializationDate = initializationDate;
+        this.initializationDateString = initializationDate.toString();
     }
 
     public void setElementsAmount(int elementsAmount) {
@@ -55,10 +59,12 @@ public class CollectionInfo {
     }
 
 
+
     @Override
     public String toString() {
+        String[] dateTime = initializationDateString.split("T");
         String type = String.format("Collection type: %s\n", collectionType);
-        String date = String.format("Initialization date: %s\n", initializationDate);
+        String date = String.format("Initialization date: %s %s\n", dateTime[0], dateTime[1]);
         String amount = String.format("Elements amount: %s", elementsAmount);
         return type + date + amount;
     }

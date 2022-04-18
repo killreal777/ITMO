@@ -9,15 +9,13 @@ import user_interface.Terminal;
 
 public class RemoveByAddress extends ServerCommand {
     private final AddressCreator creator;
-    private final Terminal terminal;
     private Address address;
 
 
     public RemoveByAddress(Terminal terminal) {
-        this.name = "remove_any_by_official_address officialAddress";
+        this.name = "remove_any_by_official_address {officialAddress}";
         this.description = "удалить из коллекции один элемент, значение поля officialAddress которого эквивалентно заданному";
         this.creator = new AddressCreator(terminal);
-        this.terminal = terminal;
     }
 
 

@@ -1,68 +1,72 @@
 package user_interface;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.Stack;
 
 
 public class ConsoleTerminal implements Terminal {
-    private Scanner scanner;
-    private boolean fileReadingMode;
+    private final Stack<String> executingScripts;
+    private final Stack<Scanner> scanners;
 
 
     public ConsoleTerminal() {
-        this.scanner = new Scanner(System.in);
-        this.fileReadingMode = false;
+        this.executingScripts = new Stack<>();
+        this.scanners = new Stack<>();
+        scanners.push(new Scanner(System.in));
     }
 
 
     @Override
-    public String[] readLine(ReadingMode mode) {
-        return readLine(mode, ">>> ");
+    public String[] readLineSplit() {
+        return readLineSplit(">>> ");
     }
 
     @Override
-    public String[] readLine(ReadingMode mode, String invitationMessage) {
-        checkReadingMode(invitationMessage);
+    public String[] readLineSplit(String invitationMessage) {
+        return readLineEntire(invitationMessage).split("\\s+");
+    }
+
+
+    @Override
+    public String readLineEntire() {
+        return readLineEntire(">>> ");
+    }
+
+    @Override
+    public String readLineEntire(String invitationMessage) {
+        checkCurrentScanner();
+        if (executingScripts.isEmpty())
+            System.out.print(invitationMessage);
         try {
-            switch (mode) {
-                case SPLIT: return parseInputLine(scanner.nextLine());
-                case ENTIRE: return new String[]{scanner.nextLine()};
-            }
-            throw new AssertionError();
+            return scanners.peek().nextLine().trim();
         } catch (NoSuchElementException e) {
+            if (!executingScripts.isEmpty())                            // means that script ended incorrectly
+                return readLineEntire(invitationMessage);
+            System.out.println("\033[0;91m" + "Ctrl+D" + "\033[0m");    // means that user entered Ctrl+D
             System.exit(0);
             throw new AssertionError();
         }
     }
 
-    private void checkReadingMode(String invitationMessage) {
-        if (fileReadingMode && !scanner.hasNext()) {
-            this.scanner = new Scanner(System.in);
-            fileReadingMode = false;
+    private void checkCurrentScanner() {
+        if (!executingScripts.isEmpty() && !scanners.peek().hasNext()) {
+            executingScripts.pop();
+            scanners.pop();
         }
-        if (!fileReadingMode)
-            System.out.print(invitationMessage);
-    }
-
-    private String[] parseInputLine(String inputLine) {
-        String[] spaceSplintedLine = inputLine.split(" ");
-        ArrayList<String> cleanedInputLine = new ArrayList<>();
-        for (String s : spaceSplintedLine) {
-            if (s.length() > 0)
-                cleanedInputLine.add(s);
-        }
-        String[] parsedInputLine = new String[cleanedInputLine.size()];
-        return cleanedInputLine.toArray(parsedInputLine);
     }
 
 
     @Override
-    public void readFile(String fileName) throws FileNotFoundException {
-        this.scanner = new Scanner(new FileReader(fileName));
-        fileReadingMode = true;
+    public void readScript(String fileName) throws FileNotFoundException {
+        File script = new File(fileName);
+        if (executingScripts.contains(script.getAbsolutePath())) {
+            throw new IllegalArgumentException();
+        }
+        executingScripts.push(script.getAbsolutePath());
+        scanners.push(new Scanner(script));
+
     }
 
 

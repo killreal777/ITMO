@@ -1,5 +1,7 @@
 package data.model;
 
+import data.FieldDefinitionException;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -8,8 +10,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "official_address")
 @XmlType(propOrder = {"zipCode", "town"})
 public class Address {
-    private String zipCode; //Длина строки не должна быть больше 16, not null
-    private Location town; //not null
+    private String zipCode;     // not null, length <= 16
+    private Location town;      // not null
 
     public Address(String zipCode, Long x, int y, float z, String name) {
         this.zipCode = zipCode;
@@ -17,6 +19,7 @@ public class Address {
     }
 
     public Address() {}
+
 
 
     @XmlElement(name = "zip_code")
@@ -30,13 +33,19 @@ public class Address {
     }
 
 
+
     public void setZipCode(String zipCode) {
+        if (zipCode.equals(""))
+            throw new FieldDefinitionException("Zip Code не может быть пустой строкой");
+        if (zipCode.length() > 16)
+            throw new FieldDefinitionException("Zip Code не может длиннее 16 символов");
         this.zipCode = zipCode;
     }
 
     public void setTown(Location town) {
         this.town = town;
     }
+
 
 
     @Override
