@@ -2,7 +2,6 @@ package data.control;
 
 import data.FieldDefinitionException;
 import data.model.DataRoot;
-import data.model.Organization;
 import user_interface.Terminal;
 
 import javax.xml.bind.JAXBContext;
@@ -14,18 +13,25 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class DataJaxbConverter {
     private final Terminal terminal;
+    private final DataFile dataFile;
+    private final DataSpecialValidator validator;
     private Marshaller marshaller;
     private Unmarshaller unmarshaller;
-    private String dataFilePath;
+
 
 
     public DataJaxbConverter(Terminal terminal) {
         this.terminal = terminal;
+        this.dataFile = new DataFile(terminal);
+        this.validator = new DataSpecialValidator();
+        initJaxbObjects();
+    }
+
+    private void initJaxbObjects() {
         try {
             JAXBContext context = JAXBContext.newInstance(DataRoot.class);
             this.marshaller = context.createMarshaller();
@@ -37,67 +43,56 @@ public class DataJaxbConverter {
     }
 
 
-    public DataRoot readXml(String filePath) {
-        try {
-            FileReader fileReader = createFileReader(filePath);
-            return parseData(fileReader);
-        } catch (JAXBException | FieldDefinitionException e) {
-            return handleIncorrectData(e.getMessage());
-        }
-    }
 
-    private DataRoot handleIncorrectData(String exceptionMessage) {
-        String message = "Данные в файле некорректны: ";
-        if (exceptionMessage == null)
-            message += "некорректная структура XML";
-        else
-            message += exceptionMessage;
-        message += "\nВведите путь к другому файлу или пустую строку для создания новой коллекции в этом файле: ";
-        String newFilePath = terminal.readLineEntire("\033[0;91m" + message + "\033[0m");
-        if (newFilePath.equals("")) {
-            return new DataRoot();
-        }
-        return readXml(newFilePath);
-    }
-
-    private FileReader createFileReader(String filePath) {
+    public DataRoot readXml() throws IOException {
         try {
-            FileReader fileReader = new FileReader(filePath);
-            dataFilePath = filePath;
-            return fileReader;
-        } catch (FileNotFoundException | NullPointerException e) {
-            String message = "Файл с коллекцией не найден (возможно, файл закрыт для чтения). Введите путь к другому файлу: ";
-            filePath = terminal.readLineEntire("\033[0;91m" + message + "\033[0m");
-            return createFileReader(filePath);
-        }
-    }
-
-    private DataRoot parseData(FileReader reader) throws JAXBException, FieldDefinitionException {
-        try {
+            FileReader reader = dataFile.createReader();
             DataRoot dataRoot = (DataRoot) unmarshaller.unmarshal(reader);
-            checkIdUniqueness(dataRoot);
             reader.close();
+            validator.validate(dataRoot.getCollectionRoot().getCollection());
             return dataRoot;
+        } catch (JAXBException e) {
+            return handleIncorrectDataException("некорректная структура XML");
+        } catch (FieldDefinitionException e) {
+            return handleIncorrectDataException(e.getMessage());
+        }
+    }
+
+    private DataRoot handleIncorrectDataException(String message) throws IOException {
+        message = "Данные в файле некорректны: " + message;
+        String options = "Введите путь к другому файлу или пустую строку для создания коллекции в этом файле: ";
+        String filePath = reenter(message, options);
+        if (filePath.equals(""))
+            return new DataRoot();
+        dataFile.setFileByPath(filePath);
+        return readXml();
+    }
+
+
+    public void writeXml(DataRoot dataRoot) throws JAXBException, FileNotFoundException {
+        try {
+            FileWriter writer = dataFile.createWriter();
+            marshaller.marshal(dataRoot, writer);
+            writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
-            throw new AssertionError();
+            handleSavingException(dataRoot);
         }
     }
 
-    private void checkIdUniqueness(DataRoot dataRoot) throws FieldDefinitionException {
-        ArrayList<Integer> ids = new ArrayList<>();
-        for (Organization org : dataRoot.getCollectionRoot().getCollection()) {
-            if (ids.contains(org.getId()))
-                throw new FieldDefinitionException("Обнаружен неуникальный ID: " + org.getId());
-            else
-                ids.add(org.getId());
-        }
+    private void handleSavingException(DataRoot dataRoot) throws JAXBException, FileNotFoundException {
+        String message = "Невозмножно сохранить коллекцию в файле: недостаточно прав";
+        String options = "Введите путь к другому файлу (для остановки этого процесса ввдеите путь к текущему файлу)" +
+                "или пустую строку для отмены: ";
+        String input = reenter(message, options);
+        if (input.equals(""))
+            throw new FileNotFoundException();
+        dataFile.setFileByPath(input);
+        writeXml(dataRoot);
     }
 
 
-    public void writeXml(DataRoot dataRoot) throws JAXBException, IOException {
-        FileWriter writer = new FileWriter(dataFilePath);
-        marshaller.marshal(dataRoot, writer);
-        writer.close();
+    private String reenter(String message, String options) {
+        String invitationMessage = "\033[0;91m" + message + "\n" + options + "\033[0m";     // highlight red
+        return terminal.readLineEntire(invitationMessage);
     }
 }

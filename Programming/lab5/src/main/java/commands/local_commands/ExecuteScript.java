@@ -31,10 +31,10 @@ public class ExecuteScript extends Command {
             terminal.readScript(scriptPath);
             result = String.format("Скрипт %s начал исполняться", scriptPath);
         } catch (FileNotFoundException e) {
-            result = String.format("Файл со скриптом %s не найден (возможно, файл закрыт для чтения)", scriptPath);
+            result = String.format("Файл со скриптом %s не найден", scriptPath);
             throw new CommandArgumentException(result);
-        } catch (IllegalArgumentException e) {
-            result = String.format("Обнаружена рекурсия. Скрипт %s не будет исполнен", scriptPath);
+        } catch (CommandArgumentException e) {
+            result = String.format("Скрипт %s не может быть исполнен: %s", scriptPath, e.getMessage());
             throw new CommandArgumentException(result);
         }
     }

@@ -14,14 +14,20 @@ import java.util.PriorityQueue;
 public class DataManager {
     private final DataJaxbConverter jaxbConverter;
     private final IdGenerator idGenerator;
-    private final DataRoot dataRoot;
+    private DataRoot dataRoot;
 
 
     public DataManager(Terminal terminal) {
         this.jaxbConverter = new DataJaxbConverter(terminal);
         this.idGenerator = new IdGenerator();
-        this.dataRoot = jaxbConverter.readXml(System.getenv("LAB5_DATA_FILE"));
-        idGenerator.loadIdInfo(dataRoot.getCollectionRoot().getCollection());
+        loadData();
+    }
+
+    private void loadData() {
+        try {
+            this.dataRoot = jaxbConverter.readXml();
+            idGenerator.loadIdInfo(dataRoot.getCollectionRoot().getCollection());
+        } catch (IOException ignored) {}
     }
 
 

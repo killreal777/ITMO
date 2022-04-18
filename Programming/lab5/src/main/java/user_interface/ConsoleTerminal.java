@@ -1,6 +1,9 @@
 package user_interface;
 
+import commands.abstractions.CommandArgumentException;
+
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Stack;
@@ -59,14 +62,17 @@ public class ConsoleTerminal implements Terminal {
 
 
     @Override
-    public void readScript(String fileName) throws FileNotFoundException {
+    public void readScript(String fileName) throws CommandArgumentException, FileNotFoundException {
         File script = new File(fileName);
+        if (!script.exists() || !script.isFile())
+            throw new FileNotFoundException();
+        if (!script.canRead())
+            throw new CommandArgumentException("недостаточно прав");
         if (executingScripts.contains(script.getAbsolutePath())) {
-            throw new IllegalArgumentException();
+            throw new CommandArgumentException("обнаружена рекурсия");
         }
         executingScripts.push(script.getAbsolutePath());
         scanners.push(new Scanner(script));
-
     }
 
 
