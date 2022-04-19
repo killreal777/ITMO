@@ -2,7 +2,7 @@ package commands.local_commands;
 
 import commands.abstractions.Command;
 import commands.abstractions.CommandArgumentException;
-import user_interface.Terminal;
+import app.Terminal;
 
 import java.io.FileNotFoundException;
 

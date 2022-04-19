@@ -2,9 +2,9 @@ package commands.server_creation_commands;
 
 import commands.abstractions.ServerCommand;
 import commands.server_creation_commands.creators.AddressCreator;
-import data.model.Address;
-import data.model.Organization;
-import user_interface.Terminal;
+import model.Address;
+import model.Organization;
+import app.Terminal;
 
 
 public class RemoveByAddress extends ServerCommand {
@@ -31,7 +31,7 @@ public class RemoveByAddress extends ServerCommand {
             if (!organization.getOfficialAddress().equals(address))
                 continue;
             dataManager.getCollection().remove(organization);
-            dataManager.getIdGenerator().removeId(organization.getId());
+            dataManager.getIdGenerator().setToRemoved(organization.getId());
             dataManager.getCollectionInfo().decrementElementsAmount();
             result = String.format("Удалена оганизация \"%s\"", organization.getName());
             return;

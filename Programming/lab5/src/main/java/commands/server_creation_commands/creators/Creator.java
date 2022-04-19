@@ -1,7 +1,7 @@
 package commands.server_creation_commands.creators;
 
-import data.FieldDefinitionException;
-import user_interface.Terminal;
+import model.FieldDefinitionException;
+import app.Terminal;
 
 
 public abstract class Creator<CreatingObject> {

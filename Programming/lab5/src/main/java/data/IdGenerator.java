@@ -1,10 +1,15 @@
-package data.control;
+package data;
 
-import data.model.Organization;
+import model.Organization;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+
+
+/**
+ * Class for generation ids for data collection objects
+ */
 
 
 public class IdGenerator {
@@ -17,6 +22,9 @@ public class IdGenerator {
     }
 
 
+    /**
+     * Issue id
+     */
     public int generateId() {
         if (removedIds.isEmpty()) {
             currentHighestId++;
@@ -25,11 +33,18 @@ public class IdGenerator {
             return removedIds.remove(0);
     }
 
-    public void removeId(int id) {
+
+    /**
+     * Marks id as removed for later issuing
+     */
+    public void setToRemoved(int id) {
         removedIds.add(id);
     }
 
 
+    /**
+     * Loads id information form collection for correct id generation
+     */
     public void loadIdInfo(Collection<Organization> collection) {
         if (collection.isEmpty())
             return;

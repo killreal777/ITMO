@@ -1,9 +1,8 @@
 package commands.server_simple_commands;
 
 import commands.abstractions.ServerCommand;
-import data.model.Organization;
+import model.Organization;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 

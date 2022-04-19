@@ -1,7 +1,7 @@
 package commands.server_creation_commands;
 
-import data.model.Organization;
-import user_interface.Terminal;
+import model.Organization;
+import app.Terminal;
 
 
 public class AddIfMax extends Add {

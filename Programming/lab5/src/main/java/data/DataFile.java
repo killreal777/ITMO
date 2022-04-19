@@ -1,8 +1,14 @@
-package data.control;
+package data;
 
-import user_interface.Terminal;
+import app.Terminal;
 
 import java.io.*;
+
+/**
+ * Class for interaction with data file
+ *
+ * Checks file permissions, allows changing, reading and writing
+ */
 
 
 public class DataFile {
@@ -26,6 +32,9 @@ public class DataFile {
     }
 
 
+    /**
+     * Checks and sets data file by file path
+     */
     public void setFileByPath(String filePath) {
         this.file = new File(filePath);
         checkFile();
@@ -76,6 +85,9 @@ public class DataFile {
     }
 
 
+    /**
+     * Creates FileReader for data file
+     */
     public FileReader createReader() {
         try {
             return new FileReader(file);
@@ -85,6 +97,9 @@ public class DataFile {
         }
     }
 
+    /**
+     * Creates FileWriter for data file
+     */
     public FileWriter createWriter() throws IOException {
         return new FileWriter(file);
     }

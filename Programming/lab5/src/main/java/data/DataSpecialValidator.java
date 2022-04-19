@@ -1,13 +1,22 @@
-package data.control;
+package data;
 
-import data.FieldDefinitionException;
-import data.model.Organization;
+import model.FieldDefinitionException;
+import model.Organization;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 
+/**
+ * Class for validation special data model objects fields requirements,
+ * which can't be validated by theirs constructors
+ */
+
+
 public class DataSpecialValidator {
+    /**
+     * Validates all special requirements
+     */
     public void validate(PriorityQueue<Organization> collection) throws FieldDefinitionException {
         checkIdUniqueness(collection);
         checkFullNameUniqueness(collection);

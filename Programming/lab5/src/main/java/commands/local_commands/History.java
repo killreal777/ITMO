@@ -1,7 +1,7 @@
 package commands.local_commands;
 
-import commands.abstractions.ServerCommand;
 import commands.CommandHistory;
+import commands.abstractions.ServerCommand;
 
 
 public class History extends ServerCommand {

@@ -1,6 +1,10 @@
 package commands.abstractions;
 
-import data.control.DataManager;
+import data.DataManager;
+
+/**
+ * Superclass for all Commands, which deal with DataManager
+ */
 
 public abstract class ServerCommand extends Command {
     protected DataManager dataManager;

@@ -2,7 +2,7 @@ package commands.server_simple_commands;
 
 import commands.abstractions.CommandArgumentException;
 import commands.abstractions.ServerCommand;
-import data.model.Organization;
+import model.Organization;
 
 
 public class RemoveByID extends ServerCommand {
@@ -31,7 +31,7 @@ public class RemoveByID extends ServerCommand {
             if (organization.getId() != id)
                 continue;
             dataManager.getCollection().remove(organization);
-            dataManager.getIdGenerator().removeId(id);
+            dataManager.getIdGenerator().setToRemoved(id);
             dataManager.getCollectionInfo().incrementElementsAmount();
             result = String.format("Удалена оганизация \"%s\"", organization.getName());
             return;

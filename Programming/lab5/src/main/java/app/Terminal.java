@@ -1,43 +1,38 @@
-package user_interface;
+package app;
 
 import commands.abstractions.CommandArgumentException;
 
 import java.io.*;
-import java.nio.file.FileAlreadyExistsException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Stack;
 
 
-public class ConsoleTerminal implements Terminal {
+public class Terminal {
     private final Stack<String> executingScripts;
     private final Stack<Scanner> scanners;
 
 
-    public ConsoleTerminal() {
+    public Terminal() {
         this.executingScripts = new Stack<>();
         this.scanners = new Stack<>();
         scanners.push(new Scanner(System.in));
     }
 
 
-    @Override
     public String[] readLineSplit() {
         return readLineSplit(">>> ");
     }
 
-    @Override
     public String[] readLineSplit(String invitationMessage) {
         return readLineEntire(invitationMessage).split("\\s+");
     }
 
 
-    @Override
     public String readLineEntire() {
         return readLineEntire(">>> ");
     }
 
-    @Override
     public String readLineEntire(String invitationMessage) {
         checkCurrentScanner();
         if (executingScripts.isEmpty())
@@ -61,7 +56,6 @@ public class ConsoleTerminal implements Terminal {
     }
 
 
-    @Override
     public void readScript(String fileName) throws CommandArgumentException, FileNotFoundException {
         File script = new File(fileName);
         if (!script.exists() || !script.isFile())
@@ -76,7 +70,6 @@ public class ConsoleTerminal implements Terminal {
     }
 
 
-    @Override
     public void print(String message) {
         System.out.print(message + "\n");
     }

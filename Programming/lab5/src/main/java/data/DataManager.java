@@ -1,14 +1,21 @@
-package data.control;
+package data;
 
-import data.model.CollectionInfo;
-import data.model.DataRoot;
-import data.model.Organization;
-import user_interface.Terminal;
+import model.CollectionInfo;
+import model.DataRoot;
+import model.Organization;
+import app.Terminal;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.PriorityQueue;
+
+
+/**
+ * Class for managing data collection in object model form
+ *
+ * Provides data collection and some tools for working with it
+ */
 
 
 public class DataManager {
@@ -31,23 +38,37 @@ public class DataManager {
     }
 
 
+    /**
+     * Saves collection to data file
+     */
     public void saveData() throws FileNotFoundException {
         try {
             jaxbConverter.writeXml(dataRoot);
-        } catch (JAXBException | IOException e) {
+        } catch (FileNotFoundException e) {
+            throw e;
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
 
+    /**
+     * Provides data collection
+     */
     public PriorityQueue<Organization> getCollection() {
         return dataRoot.getCollectionRoot().getCollection();
     }
 
+    /**
+     * Provides collection information
+     */
     public CollectionInfo getCollectionInfo() {
         return dataRoot.getCollectionInfo();
     }
 
+    /**
+     * Provides IdGenerator
+     */
     public IdGenerator getIdGenerator() {
         return idGenerator;
     }

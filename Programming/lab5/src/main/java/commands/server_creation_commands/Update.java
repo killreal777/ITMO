@@ -3,8 +3,8 @@ package commands.server_creation_commands;
 import commands.abstractions.CommandArgumentException;
 import commands.abstractions.ServerCommand;
 import commands.server_creation_commands.creators.OrganizationCreator;
-import data.model.Organization;
-import user_interface.Terminal;
+import model.Organization;
+import app.Terminal;
 
 import java.time.LocalDateTime;
 

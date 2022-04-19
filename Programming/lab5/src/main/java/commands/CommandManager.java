@@ -4,7 +4,7 @@ import commands.abstractions.*;
 import commands.local_commands.*;
 import commands.server_creation_commands.*;
 import commands.server_simple_commands.*;
-import user_interface.Terminal;
+import app.Terminal;
 
 import java.util.HashMap;
 

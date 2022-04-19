@@ -1,3 +1,6 @@
 .idea
+javadoc
 target
 uml
+scr/test
+pom.xml

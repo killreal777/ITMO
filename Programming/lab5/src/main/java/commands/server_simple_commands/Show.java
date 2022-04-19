@@ -1,7 +1,7 @@
 package commands.server_simple_commands;
 
 import commands.abstractions.ServerCommand;
-import data.model.Organization;
+import model.Organization;
 
 
 public class Show extends ServerCommand {

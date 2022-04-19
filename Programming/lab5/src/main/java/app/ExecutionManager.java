@@ -1,15 +1,22 @@
-package management;
+package app;
 
 import commands.CommandManager;
 import commands.CommandNotFoundException;
 import commands.abstractions.Command;
 import commands.abstractions.CommandArgumentException;
 import commands.abstractions.ServerCommand;
-import data.control.DataManager;
-import user_interface.ConsoleTerminal;
-import user_interface.Terminal;
+import data.DataManager;
 
 import java.util.Arrays;
+
+/**
+ * This class manages full command execution process:
+ * reads command from Terminal,
+ * gets Command instance from CommandManager,
+ * sets DataManager to the Command instance (if it's necessary)
+ * runs the Command execution method
+ * prints result in Terminal
+ * */
 
 
 public class ExecutionManager {
@@ -17,15 +24,20 @@ public class ExecutionManager {
     private final CommandManager commandManager;
     private final DataManager dataManager;
 
-
+    /**
+     * Creates instances of Terminal, DataManager and CommandManager
+     */
     public ExecutionManager() {
-        this.terminal = new ConsoleTerminal();
+        this.terminal = new Terminal();
         this.dataManager = new DataManager(terminal);
         this.commandManager = new CommandManager(terminal);
         terminal.print("Программа запущена \nДля вывода справки по доступным командам введите \"help\"");
     }
 
 
+    /**
+     * Reads and executes next command, makes final exception handling
+     */
     public void executeNextCommand() {
         try {
             Command command = readCommand();

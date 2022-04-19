@@ -1,8 +1,8 @@
 package commands.server_creation_commands.creators;
 
-import data.model.Coordinates;
-import data.FieldDefinitionException;
-import user_interface.Terminal;
+import model.Coordinates;
+import model.FieldDefinitionException;
+import app.Terminal;
 
 public class CoordinatesCreator extends Creator<Coordinates> {
     private enum CoordinatesArgument {X, Y}

@@ -1,8 +1,8 @@
 package commands.server_creation_commands.creators;
 
-import data.model.Address;
-import data.FieldDefinitionException;
-import user_interface.Terminal;
+import model.Address;
+import model.FieldDefinitionException;
+import app.Terminal;
 
 
 public class AddressCreator extends Creator<Address> {

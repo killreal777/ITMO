@@ -1,5 +1,9 @@
 package commands.abstractions;
 
+/**
+ * Superclass for all Commands
+ */
+
 
 public abstract class Command implements Cloneable {
     protected String name;

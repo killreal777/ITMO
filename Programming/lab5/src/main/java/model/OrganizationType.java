@@ -1,4 +1,4 @@
-package data.model;
+package model;
 
 public enum OrganizationType {
     COMMERCIAL("Коммерческая организация"),

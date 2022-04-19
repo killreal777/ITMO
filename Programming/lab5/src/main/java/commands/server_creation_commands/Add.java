@@ -1,9 +1,9 @@
 package commands.server_creation_commands;
 
 import commands.server_creation_commands.creators.OrganizationCreator;
-import user_interface.Terminal;
+import app.Terminal;
 import commands.abstractions.ServerCommand;
-import data.model.Organization;
+import model.Organization;
 
 import java.time.LocalDateTime;
 

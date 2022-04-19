@@ -2,9 +2,6 @@ package commands.server_simple_commands;
 
 
 import commands.abstractions.ServerCommand;
-import data.model.Organization;
-
-import java.util.stream.Collectors;
 
 public class PrintAscending extends ServerCommand {
     public PrintAscending() {

@@ -1,8 +1,8 @@
 package commands.server_creation_commands.creators;
 
-import data.FieldDefinitionException;
-import data.model.Location;
-import user_interface.Terminal;
+import model.FieldDefinitionException;
+import model.Location;
+import app.Terminal;
 
 
 public class LocationCreator extends Creator<Location> {

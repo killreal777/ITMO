@@ -1,8 +1,8 @@
-package data.control;
+package data;
 
-import data.FieldDefinitionException;
-import data.model.DataRoot;
-import user_interface.Terminal;
+import model.FieldDefinitionException;
+import model.DataRoot;
+import app.Terminal;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,13 +15,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
+/**
+ * Class converting collection of Organizations between the XML and java object model
+ */
+
 public class DataJaxbConverter {
     private final Terminal terminal;
     private final DataFile dataFile;
     private final DataSpecialValidator validator;
     private Marshaller marshaller;
     private Unmarshaller unmarshaller;
-
 
 
     public DataJaxbConverter(Terminal terminal) {
@@ -43,7 +46,9 @@ public class DataJaxbConverter {
     }
 
 
-
+    /**
+     * Reads XML form data file and converts it to the object model
+     */
     public DataRoot readXml() throws IOException {
         try {
             FileReader reader = dataFile.createReader();
@@ -69,6 +74,11 @@ public class DataJaxbConverter {
     }
 
 
+    /**
+     * Converts object model to the XML structure and saves it to the data file
+     *
+     * @param dataRoot Root class of object model
+     */
     public void writeXml(DataRoot dataRoot) throws JAXBException, FileNotFoundException {
         try {
             FileWriter writer = dataFile.createWriter();
@@ -80,7 +90,7 @@ public class DataJaxbConverter {
     }
 
     private void handleSavingException(DataRoot dataRoot) throws JAXBException, FileNotFoundException {
-        String message = "Невозмножно сохранить коллекцию в файле: недостаточно прав";
+        String message = "Невозмножно сохранить коллекцию в файле: недостаточно прав ";
         String options = "Введите путь к другому файлу (для остановки этого процесса ввдеите путь к текущему файлу)" +
                 "или пустую строку для отмены: ";
         String input = reenter(message, options);

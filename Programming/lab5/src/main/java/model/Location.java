@@ -1,11 +1,8 @@
-package data.model;
-
-import data.FieldDefinitionException;
+package model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.Objects;
 
 
 @XmlRootElement(name = "town")
