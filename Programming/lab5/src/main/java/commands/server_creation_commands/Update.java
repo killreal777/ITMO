@@ -26,8 +26,6 @@ public class Update extends ServerCommand {
         checkArgumentsAmount(args, 1);
         try {
             this.id = Integer.parseInt(args[0]);
-            this.organization.setCreationDate(LocalDateTime.now());
-            this.organization.setId(id);
         } catch (NumberFormatException e) {
             throw new CommandArgumentException("Неверный тип аргумента (ожидалось целое число типа Long)");
         }
@@ -42,6 +40,8 @@ public class Update extends ServerCommand {
                 continue;
             dataManager.getCollection().remove(organization);
             this.organization = creator.create();
+            this.organization.setCreationDate(LocalDateTime.now());
+            this.organization.setId(id);
             dataManager.getCollection().add(this.organization);
             result = String.format("Обновлена оганизация \"%s\"", organization.getName());
             return;

@@ -48,7 +48,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return zipCode + " " + town.toString();
+        return "ZipCode: " + zipCode + "\t" + town.toString();
     }
 
     @Override
